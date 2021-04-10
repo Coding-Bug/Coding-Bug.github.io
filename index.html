@@ -74,6 +74,59 @@
       <div class="outer">
         <section id="main">
   
+    <article id="layout-在O-logn-的复杂度下两数组的混合中位数" class="h-entry article article-type-layout" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2021-04-10T15:32:41.000Z" itemprop="datePublished">2021-04-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">在O(logn)的复杂度下两数组的混合中位数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设X[ 0 : n - 1]和Y[ 0 : n – 1 ]为两个数组，每个数组中含有n个已排好序的数。找出X和Y的2n个数的中位数。要求：O(logn)时间内</p>
+<p>#####解析<br>要在O(logn)时间内求解，则自然想到分治算法。求解思路与如下：<br>先分别求数组X和Y的两个中位数MedX和MedY。则会有以下情况</p>
+<ul>
+<li><p>（1）MedX==MedY。则很明显MedX即是2n个数的中位数。因为两个数组是完全等长的，所以两个数组中位数两边的数的个数，也是完全一样的。</p>
+</li>
+<li><p>（2）MedX&gt;MedY<br>这种情况下，比X<sub>n/2+1</sub>,X<sub>n/2+2</sub>,…,X<sub>n-1</sub>小的数至少有n+2个，所以X<sub>n/2+1</sub>,X<sub>n/2+2</sub>,…,X<sub>n-1</sub>一定比中位数大，即使中位数最后是由两个取平均，X<sub>n/2+1</sub>,X<sub>n/2+2</sub>,…,X<sub>n-1</sub>也会比后面取平均的后者大。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>n/2-1</sub>一定比中位数小，所以中位数在X<sub>0</sub>,X<sub>1</sub>,…,X<sub>n/2</sub>和Y<sub>n/2</sub>,Y<sub>n/2+2</sub>,…,Y<sub>n-1</sub>中。</p>
+</li>
+</ul>
+<p>由于在中位数两边加上任意等数量的数并不影响中位数的取值，所以X<sub>0</sub>,X<sub>1</sub>,…,X<sub>n/2</sub>和Y<sub>n/2+1</sub>,Y<sub>n/2+2</sub>,…,Y<sub>n-1</sub>的中位数即是原本的中位数。这样即实现了二分。</p>
+<ul>
+<li>（3）MedX&lt;MedY<br>这种情况和上面的同理</li>
+</ul>
+<p>到了最后有可能出现{X<sub>i</sub>},{Y<sub>i</sub>,Y<sub>i+1</sub>}且X<sub>i</sub>&gt;MedY的情况，则向分下去仍是这个结果，所以X或Y只要有一方只有一个元素，便直接使用原始方法判断。当然也有可能最后两个数组都只有一个数，那则求平均。（其实也不可能出现这种情况了，除非本来他们各自就都是一个元素）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding-bug.github.io/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/" data-id="cknbxrlkz0000wstkf4sz9wm2" data-title="在O(logn)的复杂度下两数组的混合中位数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/" rel="tag">-分治法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="layout-sptingboot集成mybatis" class="h-entry article article-type-layout" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/" class="article-date">
@@ -97,8 +150,8 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h1 id="SpringBoot集成mybatis"><a href="#SpringBoot集成mybatis" class="headerlink" title="SpringBoot集成mybatis"></a>SpringBoot集成mybatis</h1><blockquote>
-<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3><p>&emsp;&emsp;在pom.xml文件中添加MySQL驱动依赖和mybatis依赖,MySQL不用加版本号，继承了父类的版本号，也可以自己指定版本号。</p>
-</blockquote>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3></blockquote>
+<p>&emsp;&emsp;在pom.xml文件中添加MySQL驱动依赖和mybatis依赖,MySQL不用加版本号，继承了父类的版本号，也可以自己指定版本号。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--MySQL驱动--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">		&lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--MyBatis整合springboot框架的起步依赖--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.0.0&lt;&#x2F;version&gt;</span><br><span class="line">		&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <h3 id="属性设置"><a href="#属性设置" class="headerlink" title="属性设置"></a>属性设置</h3><p>&emsp;&emsp;在GeneratorMapper.xml文件中进行连接数据库的属性设置，设置完成后生成即可。</p>
@@ -192,7 +245,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/" rel="tag">JAVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SptingBoot/" rel="tag">SptingBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/" rel="tag">-分治法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JAVA/" rel="tag">JAVA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SptingBoot/" rel="tag">SptingBoot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
     </div>
   </div>
 
@@ -202,7 +255,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/JAVA/" style="font-size: 20px;">JAVA</a> <a href="/tags/SptingBoot/" style="font-size: 10px;">SptingBoot</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
+      <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/" style="font-size: 10px;">-分治法</a> <a href="/tags/JAVA/" style="font-size: 20px;">JAVA</a> <a href="/tags/SptingBoot/" style="font-size: 10px;">SptingBoot</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a>
     </div>
   </div>
 
@@ -211,7 +264,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a></li></ul>
     </div>
   </div>
 
@@ -222,6 +275,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">在O(logn)的复杂度下两数组的混合中位数</a>
+          </li>
         
           <li>
             <a href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/">sptingboot集成mybatis</a>
