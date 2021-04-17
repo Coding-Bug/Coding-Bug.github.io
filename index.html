@@ -74,6 +74,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-关于对floyd算法的质疑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/" class="article-date">
+  <time class="dt-published" datetime="2021-04-17T16:24:38.000Z" itemprop="datePublished">2021-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">关于对floyd算法的质疑</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#floyd算法<br>所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。<br>循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。</p>
+<p>####疑惑<br>例如一个有向图，只有1-&gt;2和1-&gt;0-&gt;4-&gt;3-&gt;2这两条路径。前者长度8，后者总长度6。那么在选取0作起始点的时候，0-&gt;2没有更新成为最短路径，并且后来会把0抛弃掉，不考虑经过0，所以在选择经过0的时候，我们就没能求出1经过0到达2的最短路径。那么怎么还能算出1-&gt;2的最短路径？</p>
+<h4 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h4><p>在对0进行考虑的时候，我们已经更新了1-&gt;4的路径，而这条路径是从1经过0到达2的最短路径的一部分。所以其实经过0到达2的最短路径就已经被求出了一部分，所以接下来和0就没关系了。接下来的求法也同理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding-bug.github.io/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/" data-id="cknlyzqf90000hotk3sc02m37" data-title="关于对floyd算法的质疑" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-在O-logn-的复杂度下两数组的混合中位数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/" class="article-date">
@@ -283,6 +324,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">关于对floyd算法的质疑</a>
+          </li>
         
           <li>
             <a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">在O(logn)的复杂度下两数组的混合中位数</a>

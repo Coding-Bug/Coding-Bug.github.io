@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>标签: SptingBoot | CJF的博客</title>
+  <title>关于对floyd算法的质疑 | CJF的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="用于写笔记或者记录一些错误及难题">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CJF的博客">
-<meta property="og:url" content="https://coding-bug.github.io/tags/SptingBoot/index.html">
+  <meta name="description" content="#floyd算法所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。 ####疑惑例如一个有向图，只有1-&gt;2和1-&gt;0-&gt;4-&gt;3-&gt;2这两条路径。前者长度8，后者总长度6。那么在选取0作起始点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于对floyd算法的质疑">
+<meta property="og:url" content="https://coding-bug.github.io/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/index.html">
 <meta property="og:site_name" content="CJF的博客">
-<meta property="og:description" content="用于写笔记或者记录一些错误及难题">
+<meta property="og:description" content="#floyd算法所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。 ####疑惑例如一个有向图，只有1-&gt;2和1-&gt;0-&gt;4-&gt;3-&gt;2这两条路径。前者长度8，后者总长度6。那么在选取0作起始点">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-17T16:24:38.000Z">
+<meta property="article:modified_time" content="2021-04-17T16:43:47.451Z">
 <meta property="article:author" content="CJF">
 <meta property="article:tag" content="CJF">
 <meta name="twitter:card" content="summary">
@@ -72,39 +74,55 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/" class="archive-article-date">
-  <time class="dt-published" datetime="2021-03-30T04:23:17.000Z" itemprop="datePublished">3月 30</time>
+        <section id="main"><article id="post-关于对floyd算法的质疑" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/" class="article-date">
+  <time class="dt-published" datetime="2021-04-17T16:24:38.000Z" itemprop="datePublished">2021-04-18</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/">sptingboot集成mybatis</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      关于对floyd算法的质疑
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>#floyd算法<br>所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。<br>循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。</p>
+<p>####疑惑<br>例如一个有向图，只有1-&gt;2和1-&gt;0-&gt;4-&gt;3-&gt;2这两条路径。前者长度8，后者总长度6。那么在选取0作起始点的时候，0-&gt;2没有更新成为最短路径，并且后来会把0抛弃掉，不考虑经过0，所以在选择经过0的时候，我们就没能求出1经过0到达2的最短路径。那么怎么还能算出1-&gt;2的最短路径？</p>
+<h4 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h4><p>在对0进行考虑的时候，我们已经更新了1-&gt;4的路径，而这条路径是从1经过0到达2的最短路径的一部分。所以其实经过0到达2的最短路径就已经被求出了一部分，所以接下来和0就没关系了。接下来的求法也同理。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://coding-bug.github.io/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/" data-id="cknlyzqf90000hotk3sc02m37" data-title="关于对floyd算法的质疑" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">在O(logn)的复杂度下两数组的混合中位数</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
