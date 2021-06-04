@@ -1,300 +1,551 @@
 <!DOCTYPE html>
- <html lang="zh-CN"> 
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  
-  <title>CJF的博客</title>
-  <meta name="author" content="CJF">
-
-  
-  <meta name="description" content="用于写笔记或者记录一些错误及难题">
-  
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  <!--[if lt IE 9]><script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script><![endif]-->
-  
-<meta name="generator" content="Hexo 5.4.0"></head>
-
-<body>
-  <header id="header" class="inner"><nav>
-  <ul>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     
-      <li><a href="/">Home</a></li>
+    <meta name="referrer" content="no-referrer-when-downgrade">
     
-      <li><a href="/archives">Archives</a></li>
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
     
-  </ul>
-</nav></header>
-  <div id="content" class="inner">
-  <article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-    <div class="gallery">
-  <div class="photoset">
     
-      <img src="">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
     
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <header>
     
-  
-    <h1 class="title"><a href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">关于对floyd算法的质疑</a></h1>
-  
-
-    <time class="dt-published" datetime="2021-04-17T16:24:38.000Z">
-  <span class="day">18</span><span class="month">Apr</span>
-</time>
-  </header>
-  <div class="e-content entry-content">
     
-      <h1 id="floyd算法"><a href="#floyd算法" class="headerlink" title="floyd算法"></a>floyd算法</h1><p>所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。<br>循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。</p>
-<h4 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h4><p>例如一个有向图，只有1-&gt;2和1-&gt;0-&gt;4-&gt;3-&gt;2这两条路径。前者长度8，后者总长度6。那么在选取0作起始点的时候，0-&gt;2没有更新成为最短路径，并且后来会把0抛弃掉，不考虑经过0，所以在选择经过0的时候，我们就没能求出1经过0到达2的最短路径。那么怎么还能算出1-&gt;2的最短路径？</p>
-<h4 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h4><p>在对0进行考虑的时候，我们已经更新了1-&gt;4的路径，而这条路径是从1经过0到达2的最短路径的一部分。所以其实经过0到达2的最短路径就已经被求出了一部分，所以接下来和0就没关系了。接下来的求法也同理。</p>
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
 
     
     
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-
-  <article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">在O(logn)的复杂度下两数组的混合中位数</a></h1>
-  
-
-    <time class="dt-published" datetime="2021-04-10T15:32:41.000Z">
-  <span class="day">10</span><span class="month">Apr</span>
-</time>
-  </header>
-  <div class="e-content entry-content">
-    
-      <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设X[ 0 : n - 1]和Y[ 0 : n – 1 ]为两个数组，每个数组中含有n个已排好序的数。找出X和Y的2n个数的中位数。要求：O(logn)时间内</p>
-<h5 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h5><p>要在O(logn)时间内求解，则自然想到分治算法。求解思路与如下：<br>先分别求数组X和Y的两个中位数MedX和MedY。则会有以下情况</p>
-<ul>
-<li><p>（1）MedX==MedY。则很明显MedX即是2n个数的中位数。因为两个数组是完全等长的，所以两个数组中位数两边的数的个数，也是完全一样的。</p>
-</li>
-<li><p>（2）MedX&gt;MedY</p>
-<ul>
-<li>如果n是奇数<br>这种情况下，比X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>小的数至少有n+1个，所以X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>一定比中位数大。所以中位数不会在X<sub>(n-1)/2+1</sub>,X(n-1)/2+2</sub>,…,X<sub>n-1</sub>中。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>(n-1)/2-1</sub>一定比中位数小。所以中位数在X<sub>0</sub>,X<sub>1</sub>,…,X<sub>(n-1)/2</sub>和Y<sub>(n-1)/2</sub>,Y<sub>n/2+2</sub>,…,Y<sub>n-1</sub>中。则只需要考察X[0:(n-1)/2:n-1]和Y[0:(n-1)/2]。</li>
-<li>如果n是偶数<br>则X<sub>(n-1)/2+2</sub>,X<sub>(n-1)/2+3</sub>,…,X<sub>n-1</sub>小的数至少有n+1个，所以X<sub>(n-1)/2+2</sub>,X<sub>(n-1)/2+3</sub>,…,X<sub>n-1</sub>一定比中位数大。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>(n-)/2-2</sub>一定比中位数小。则只需要考察X[0:(n-1)/2+1]和Y[(n-1)/2-1:n-1]。</li>
-</ul>
-</li>
-</ul>
-<p>由于在中位数两边加上或减去任意等数量的数并不影响中位数的取值,所以上述方法成立。</p>
-<ul>
-<li>（3）MedX&lt;MedY<br>这种情况和上面的同理</li>
-</ul>
-<p>分到最后每个数组只有两个元素，则不可以再分下去，利用X和Y的中位数用直接方法求解。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">函数名：FindMedian</span></span><br><span class="line"><span class="comment">功能：  求数组的某一区间的中位数</span></span><br><span class="line"><span class="comment">参数：  double Z[]-所求数组，int zl-数组的最小下标，int zr-数组的最大下标</span></span><br><span class="line"><span class="comment">返回值：double-中位数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">FindMedian</span><span class="params">(<span class="keyword">double</span> Z[],<span class="keyword">int</span> zl,<span class="keyword">int</span> zr)</span></span>&#123;</span><br><span class="line">       <span class="keyword">if</span>((zr-zl)%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> Z[(zr+zl)/<span class="number">2</span>];</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="built_in"><span class="keyword">return</span></span> (Z[(zr+zl)/<span class="number">2</span>]+Z[(zr+zl)/<span class="number">2</span>+<span class="number">1</span>])/<span class="number">2</span>;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">函数名：FindMedian</span></span><br><span class="line"><span class="comment">功能：  求分别有序数组X某一区间和有序数组Y某一区间的混合中位数</span></span><br><span class="line"><span class="comment">参数：  int X[]-数组X，int xl-数组X要考察的最小下标，int xr-数组x要考察的最大下标</span></span><br><span class="line"><span class="comment">返回值：double-混合中位数</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">FindMixMedian</span><span class="params">(<span class="keyword">double</span> X[],<span class="keyword">int</span> xl,<span class="keyword">int</span> xr,<span class="keyword">double</span> Y[],<span class="keyword">int</span> yl,<span class="keyword">int</span> yr)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">double</span> MedX=<span class="built_in">FindMedian</span>(X,xl,xr);<span class="comment">// 求X考察区域的中位数</span></span><br><span class="line">    <span class="keyword">double</span> MedY=<span class="built_in">FindMedian</span>(Y,yl,yr);<span class="comment">// 求y所考察区域的中位数</span></span><br><span class="line">    <span class="comment">// 若两个中位数相等，则所求便是混合区间的中位数</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">abs</span>(MedX-MedY)&lt;<span class="number">0.00001</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> MedY;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 若两边都只剩一个了，就取平均</span></span><br><span class="line">    <span class="keyword">if</span>(xl==xr&amp;&amp;yl==yr)&#123;</span><br><span class="line">        <span class="keyword">return</span> (X[xl]+Y[xl])/<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 若每个数组只剩两个，则讨论求出中位数</span></span><br><span class="line">    <span class="keyword">if</span>(xr-xl+<span class="number">1</span>==<span class="number">2</span>&amp;&amp;yr-yl+<span class="number">1</span>==<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="comment">// 若MedX大，则X[xr]大于X[xl]和Y[YL],则判断X[xr]和Y[yr]</span></span><br><span class="line">        <span class="keyword">if</span>(MedX&gt;MedY)&#123;    </span><br><span class="line">            <span class="keyword">if</span>(X[xr]&gt;=Y[yr])&#123;     <span class="comment">// 若X[xr]&gt;=Y[yr],则可以确定地关系是Y[yl]&lt;=Y[yr]&lt;=X[xr]</span></span><br><span class="line">                <span class="keyword">if</span>(X[xl]&lt;Y[yl])&#123;  <span class="comment">// X[xl]&lt;Y[yl]&lt;=Y[yr]&lt;=X[xr] </span></span><br><span class="line">                    <span class="keyword">return</span> ((Y[yl]+Y[yr])/<span class="number">2</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;            <span class="comment">// Y[yl]&lt;=Y[yr]&lt;X[xl]&lt;=X[xr]或 Y[yl]&lt;=X[xl]&lt;=Y[yr]&lt;=X[xr]</span></span><br><span class="line">                    <span class="built_in"><span class="keyword">return</span></span> ((X[xl]+Y[yr])/<span class="number">2</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123; <span class="comment">// 如果X[xr]比Y[Yr]小，则X[xl]一定比Y[yl]大,则 Y[yl]&lt;X[xl]&lt;=X[xr]&lt;Y[yr]</span></span><br><span class="line">             <span class="keyword">return</span> MedX;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 若MedY大，则与上面的对称</span></span><br><span class="line">        <span class="keyword">if</span>(MedX&lt;MedY)&#123;     </span><br><span class="line">            <span class="keyword">if</span>(Y[yr]&gt;=X[xr])&#123;</span><br><span class="line">                <span class="keyword">if</span>(Y[yl]&lt;X[xl])&#123;</span><br><span class="line">                    <span class="keyword">return</span> ((X[xl]+X[xr])/<span class="number">2</span>);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;    </span><br><span class="line">                    <span class="built_in"><span class="keyword">return</span></span> ((Y[yl]+X[xr])/<span class="number">2</span>);</span><br><span class="line">                &#125;  </span><br><span class="line">            &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> MedY;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 区间划分</span></span><br><span class="line">    <span class="keyword">if</span>(MedX&gt;MedY)&#123;   <span class="comment">// MedX大时，X取小的部分，Y取大的部分</span></span><br><span class="line">        <span class="keyword">if</span>((xl-xr+<span class="number">1</span>)%<span class="number">2</span>!=<span class="number">0</span>)&#123;    <span class="comment">// 若区间个数为奇数</span></span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">FindMixMedian</span>(X,xl,(xl+xr)/<span class="number">2</span>,Y,(yl+yr)/<span class="number">2</span>,yr);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">FindMixMedian</span>(X,xl,(xl+xr)/<span class="number">2</span>+<span class="number">1</span>,Y,(yl+yr)/<span class="number">2</span>,yr);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;           <span class="comment">// MedX小时，X取大的部分，Y取小的部分</span></span><br><span class="line">        <span class="keyword">if</span>((xl-xr+<span class="number">1</span>)%<span class="number">2</span>!=<span class="number">0</span>)&#123;    <span class="comment">// 若区间个数为奇数</span></span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">FindMixMedian</span>(X,(xl+xr)/<span class="number">2</span>,xr,Y,yl,(yl+yr)/<span class="number">2</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="built_in">FindMixMedian</span>(X,(xl+xr)/<span class="number">2</span>,xr,Y,yl,(yl+yr)/<span class="number">2</span>+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;input1.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;output1.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">    <span class="keyword">int</span> n;     <span class="comment">// 数组X和Y中每个数组所含有的元素个数   </span></span><br><span class="line">    <span class="keyword">double</span> X[<span class="number">202</span>]; </span><br><span class="line">    <span class="keyword">double</span> Y[<span class="number">202</span>];</span><br><span class="line">    <span class="keyword">double</span> ans;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;X[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;Y[i];</span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="built_in">FindMixMedian</span>(X,<span class="number">0</span>,n<span class="number">-1</span>,Y,<span class="number">0</span>,n<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-    
-    <footer class="meta">
-      
-  <div class="cats">
-<a href="/categories/%E7%AE%97%E6%B3%95/">-算法</a></div>
-
-      
-  <div class="tags">
-<a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">-分治法</a></div>
-
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-
-  <article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/">sptingboot集成mybatis</a></h1>
-  
-
-    <time class="dt-published" datetime="2021-03-30T04:23:17.000Z">
-  <span class="day">30</span><span class="month">Mar</span>
-</time>
-  </header>
-  <div class="e-content entry-content">
-    
-      <h1 id="SpringBoot集成mybatis"><a href="#SpringBoot集成mybatis" class="headerlink" title="SpringBoot集成mybatis"></a>SpringBoot集成mybatis</h1><blockquote>
-<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3></blockquote>
-<p>&emsp;&emsp;在pom.xml文件中添加MySQL驱动依赖和mybatis依赖,MySQL不用加版本号，继承了父类的版本号，也可以自己指定版本号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--MySQL驱动--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;mysql&lt;&#x2F;groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mysql-connector-java&lt;&#x2F;artifactId&gt;</span><br><span class="line">		&lt;&#x2F;dependency&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!--MyBatis整合springboot框架的起步依赖--&gt;</span><br><span class="line">		&lt;dependency&gt;</span><br><span class="line">			&lt;groupId&gt;org.mybatis.spring.boot&lt;&#x2F;groupId&gt;</span><br><span class="line">			&lt;artifactId&gt;mybatis-spring-boot-starter&lt;&#x2F;artifactId&gt;</span><br><span class="line">			&lt;version&gt;2.0.0&lt;&#x2F;version&gt;</span><br><span class="line">		&lt;&#x2F;dependency&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<h3 id="属性设置"><a href="#属性设置" class="headerlink" title="属性设置"></a>属性设置</h3><p>&emsp;&emsp;在GeneratorMapper.xml文件中进行连接数据库的属性设置，设置完成后生成即可。</p>
-</blockquote>
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
 
     
     
-    <footer class="meta">
-      
-      
-  <div class="tags">
-<a href="/tags/JAVA/">JAVA</a><a href="/tags/SptingBoot/">SptingBoot</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></div>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
 
-      
-    </footer>
-    
-  </div>
-  
-</article>
-
-
-  <article class="h-entry post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  
-    <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-  
-  <header>
-    
-  
-    <h1 class="title"><a href="/2021/03/22/IDEApush%E5%88%B0github%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84%E9%97%AE%E9%A2%98/">IDEApush到github被拒绝的问题</a></h1>
-  
-
-    <time class="dt-published" datetime="2021-03-22T14:49:21.000Z">
-  <span class="day">22</span><span class="month">Mar</span>
-</time>
-  </header>
-  <div class="e-content entry-content">
-    
-      <h2 id="上传时被拒绝"><a href="#上传时被拒绝" class="headerlink" title="上传时被拒绝"></a>上传时被拒绝</h2><p>上传代码到github出现rejected的问题是因为新传的文件和原来的不是同一时间上传等，解决办法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master</span><br><span class="line">git push -u origin master -f     &#x2F;&#x2F;这句不一定要</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="删除Github上面的文件夹"><a href="#删除Github上面的文件夹" class="headerlink" title="删除Github上面的文件夹"></a>删除Github上面的文件夹</h2><p>先pull（把github上的文件pull下来）<br>再执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached -r &quot;要删除的文件夹&quot;</span><br></pre></td></tr></table></figure>
-<p>然后再commit，再push就行了。</p>
 
     
     
-    <footer class="meta">
-      
-  <div class="cats">
-<a href="/categories/Diary/">Diary</a></div>
 
-      
-  <div class="tags">
-<a href="/tags/JAVA/">JAVA</a></div>
-
-      
-    </footer>
     
-  </div>
-  
-</article>
-
-
-
-<nav id="pagenavi">
-  
-  
-  <div class="clearfix"></div>
-</nav></div>
-  <footer id="footer" class="inner"><div class="social alignright">
-  
-  
-  
-  
-  <a class="rss" href="/atom.xml" title="RSS">RSS</a>
-</div>
-<p>
-  
-  &copy; 2021 CJF
-  
-</p>
-<div class="clearfix"></div></footer>
-  
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-
-
-<script src="/js/gallery.js"></script>
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
 
 
 
 
 
 
-<script src="/fancybox/jquery.fancybox.min.js"></script>
 
-<script>
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
+
+
+
+
+
+    
+        <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        
+            load: ['[tex]/mhchem'],
+        
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        
+            packages: {'[+]': ['mhchem']},
+        
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
 </script>
+          
 
 
-<div id="phasebeam">
-  <canvas></canvas>
-  <canvas></canvas>
-  <canvas></canvas>
+    
+    
+    <title>
+          
+            CJF的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">CJF的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
 </div>
 
-<script src="/js/phasebeam.js"></script>
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">CJF</div>
+            <div class="sidebar-description">用于写笔记或者记录一些错误及难题</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">关于对floyd算法的质疑</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-04-18
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-04-18
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/ >动态规划</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h1 id="floyd算法"><a href="#floyd算法" class="headerlink" title="floyd算法"></a>floyd算法</h1><p>所谓floyd算法，就是求图的每两个顶点的最短路径问题。算法用的是动态规划。<br>循环N次，每次选取一个顶点K，比较图的每个顶点经过K到达其他顶点的距离和本来该顶点到达其他顶点的距离，并进行距离的更新。最后可求出每两个点的最短距离。</p>
+<h4 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h4><p>例如一个有向图，只有1-&gt...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">在O(logn)的复杂度下两数组的混合中位数</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-04-10
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-04-17
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">-算法</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E5%88%86%E6%B2%BB%E6%B3%95/ >-分治法</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>设X[ 0 : n - 1]和Y[ 0 : n – 1 ]为两个数组，每个数组中含有n个已排好序的数。找出X和Y的2n个数的中位数。要求：O(logn)时间内</p>
+<h5 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h5><p>要在O(logn)时间内求解，则自然想到分治算法。求解思路与如下：<br>先分别求数组X和Y的两个中位数MedX和MedY。则会有以下情况</p>...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2021/04/10/%E5%9C%A8O-logn-%E7%9A%84%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8B%E4%B8%A4%E6%95%B0%E7%BB%84%E7%9A%84%E6%B7%B7%E5%90%88%E4%B8%AD%E4%BD%8D%E6%95%B0/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/">sptingboot集成mybatis</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-03-30
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-04-11
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JAVA/ >JAVA</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/SptingBoot/ >SptingBoot</a>
+      </i>
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E6%95%B0%E6%8D%AE%E5%BA%93/ >数据库</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h1 id="SpringBoot集成mybatis"><a href="#SpringBoot集成mybatis" class="headerlink" title="SpringBoot集成mybatis"></a>SpringBoot集成mybatis</h1><blockquote>
+<h3 id="添加依赖"><a href="#添加依赖" class="headerlink" title="添加依赖"></a>添加依赖</h3></blockquote>
+<p>&emsp;&emsp;在pom.xml文件中添加MySQL驱动依赖和mybatis依赖,MySQL不用加版本号，...
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2021/03/30/sptingboot%E9%9B%86%E6%88%90mybatis/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="mdui-card mdui-m-b-5 mdui-hoverable">    
+      
+      
+        <div class="post-header"> 
+  <a class="post-header-title" href="/2021/03/22/IDEApush%E5%88%B0github%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84%E9%97%AE%E9%A2%98/">IDEApush到github被拒绝的问题</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-03-22
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-03-29
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/Diary/">Diary</a>
+    </span>
+    
+  </div>
+</div>   
+    
+
+
+
+      
+      
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/JAVA/ >JAVA</a>
+      </i>
+    
+  </div>
+
+      
+      <div id="achieve-abstract" class="mdui-card-content mdui-p-x-4">
+        <div class="post-abstract mdui-typo ">
+          
+            <h2 id="上传时被拒绝"><a href="#上传时被拒绝" class="headerlink" title="上传时被拒绝"></a>上传时被拒绝</h2><p>上传代码到github出现rejected的问题是因为新传的文件和原来的不是同一时间上传等，解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master</span><br><span class="line">git push -u origin master -f     &#x2F;&#x2F;这句不一定要</span><br></pre></td></tr></table></figure>
+          
+        </div>
+        
+        <div style="text-align:center;">
+          <a class="post-readmore mdui-btn mdui-ripple mdui-btn-raised" href="/2021/03/22/IDEApush%E5%88%B0github%E8%A2%AB%E6%8B%92%E7%BB%9D%E7%9A%84%E9%97%AE%E9%A2%98/">阅读更多</a>
+        </div>
+      </div>
+    </article>
+
+
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        CJF
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
 
 </body>
-</html>
+</html >
