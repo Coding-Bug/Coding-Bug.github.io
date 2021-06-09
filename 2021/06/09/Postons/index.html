@@ -226,7 +226,7 @@
     
     
       <div class="post-header"> 
-  <a class="post-header-title" href="/2021/06/09/Poston/">Poston</a>
+  <a class="post-header-title" href="/2021/06/09/Postons/">Poston</a>
   <div class="post-header-meta">
     <span>
       <span class="iconfont icon-calendar"></span>
@@ -260,25 +260,25 @@
       <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
       <ul class="mdui-menu" id="share_menu">
         <li class="mdui-menu-item">
-          <a href="http://service.weibo.com/share/share.php?appkey=&title=Poston&url=https://coding-bug.github.io/2021/06/09/Poston/&pic=https://Coding-Bug.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=Poston&url=https://coding-bug.github.io/2021/06/09/Postons/&pic=https://Coding-Bug.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://twitter.com/intent/tweet?text=Poston&url=https://coding-bug.github.io/2021/06/09/Poston/&via=CJF" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+          <a href="https://twitter.com/intent/tweet?text=Poston&url=https://coding-bug.github.io/2021/06/09/Postons/&via=CJF" target="_blank" class="mdui-ripple">分享到 Twitter</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://coding-bug.github.io/2021/06/09/Poston/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://coding-bug.github.io/2021/06/09/Postons/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://plus.google.com/share?url=https://coding-bug.github.io/2021/06/09/Poston/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+          <a href="https://plus.google.com/share?url=https://coding-bug.github.io/2021/06/09/Postons/" target="_blank" class="mdui-ripple">分享到 Google+</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://coding-bug.github.io/2021/06/09/Poston/&title=Poston" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://coding-bug.github.io/2021/06/09/Postons/&title=Poston" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="http://connect.qq.com/widget/shareqq/index.html?site=CJF的博客&title=Poston&summary=用于写笔记或者记录一些错误及难题&pics=https://Coding-Bug.github.io/null&url=https://coding-bug.github.io/2021/06/09/Poston/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=CJF的博客&title=Poston&summary=用于写笔记或者记录一些错误及难题&pics=https://Coding-Bug.github.io/null&url=https://coding-bug.github.io/2021/06/09/Postons/" target="_blank" class="mdui-ripple">分享到 QQ</a>
         </li>
         <li class="mdui-menu-item">
-          <a href="https://telegram.me/share/url?url=https://coding-bug.github.io/2021/06/09/Poston/&text=Poston" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+          <a href="https://telegram.me/share/url?url=https://coding-bug.github.io/2021/06/09/Postons/&text=Poston" target="_blank" class="mdui-ripple">分享到 Telegram</a>
         </li>
       </ul>
     
@@ -306,25 +306,7 @@
 
   
   <div class="mdui-card-content mdui-typo mdui-p-x-4">
-    <p>#题目<br><img src="/images/Week1/Potions(Hard_version).png" alt="a"><br>####题目分析<br>题目大概意思就是给出n个药水，每种药水会让生命值变化，你从左到右走，经过这个位置的时候可以拿起这瓶药水也可以忽略这瓶药水。你的初始生命值为0，并且整个过程中你的生命值不能低于0，问你最多能拿多少药水。</p>
-<p>####题解<br>这个题目和最大连续子序列不同，这个是可以不连续的。</p>
-<ul>
-<li><p>贪心：使用贪心的策略，每次只要生命值允许，就拿这瓶药，并且记录自己拿了那些药。</p>
-</li>
-<li><p>反悔：如果走到一个地方，拿了这瓶药之后，自己的生命会比0小，则比较：</p>
-<ul>
-<li>若将之前所有药中生命值最小的一瓶比现在碰到的这瓶还小，那么丢弃之前那瓶药，而选择这瓶药，即反悔。</li>
-<li>否则跳过这瓶药</li>
-</ul>
-</li>
-<li><p>优先队列：由于每次都要比较之前已经拿了的药最小的，所以要用小根堆来记录之前已经喝过的药。</p>
-</li>
-</ul>
-<p>####代码</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> Now=<span class="number">0</span>;    <span class="comment">// 当前生命值</span></span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;    <span class="comment">// 能够捡起的数量 </span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">200004</span>];</span><br><span class="line"><span class="keyword">int</span> n;     <span class="comment">// position数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/div1A.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; Q;   <span class="comment">// 小根堆</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Now+a[i]&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!Q.<span class="built_in">empty</span>()&amp;&amp;Q.<span class="built_in">top</span>()&lt;a[i])&#123;</span><br><span class="line">                <span class="comment">// 将小根堆顶部替换掉，由于Now本来就大于0，所以反悔后Now也大于0</span></span><br><span class="line">                Now=Now+a[i]-Q.<span class="built_in">top</span>();</span><br><span class="line">                Q.<span class="built_in">pop</span>();</span><br><span class="line">                Q.<span class="built_in">push</span>(a[i]);</span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Now+=a[i];</span><br><span class="line">            Q.<span class="built_in">push</span>(a[i]);    <span class="comment">// 把之前要的记录下来</span></span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+    <p>#题目<br><img src="/2021/06/09/Postons/Potions(Hard_version).png" class="" title="%)&lt;&#x2F;p&gt; &lt;h4 id&#x3D;题目分析&gt;&lt;a href&#x3D;#题目分析 class&#x3D;headerlink title&#x3D;题目分析&gt;&lt;&#x2F;a&gt;题目分析&lt;&#x2F;h4&gt;&lt;p&gt;题目大概意思就是给出n个药水，每种药水会让生命值变化，你从左到右走，经过这个位置的时候可以拿起这瓶药水也可以忽略这瓶药水。你的初始生命值为0，并且整个过程中你的生命值不能低于0，问你最多能拿多少药水。&lt;&#x2F;p&gt; &lt;h4 id&#x3D;题解&gt;&lt;a href&#x3D;#题解 class&#x3D;headerlink title&#x3D;题解&gt;&lt;&#x2F;a&gt;题解&lt;&#x2F;h4&gt;&lt;p&gt;这个题目和最大连续子序列不同，这个是可以不连续的。&lt;&#x2F;p&gt; &lt;ul&gt; &lt;li&gt;&lt;p&gt;贪心：使用贪心的策略，每次只要生命值允许，就拿这瓶药，并且记录自己拿了那些药。&lt;&#x2F;p&gt; &lt;&#x2F;li&gt; &lt;li&gt;&lt;p&gt;反悔：如果走到一个地方，拿了这瓶药之后，自己的生命会比0小，则比较：&lt;&#x2F;p&gt; &lt;ul&gt; &lt;li&gt;若将之前所有药中生命值最小的一瓶比现在碰到的这瓶还小，那么丢弃之前那瓶药，而选择这瓶药，即反悔。&lt;&#x2F;li&gt; &lt;li&gt;否则跳过这瓶药&lt;&#x2F;li&gt; &lt;&#x2F;ul&gt; &lt;&#x2F;li&gt; &lt;li&gt;&lt;p&gt;优先队列：由于每次都要比较之前已经拿了的药最小的，所以要用小根堆来记录之前已经喝过的药。&lt;&#x2F;p&gt; &lt;&#x2F;li&gt; &lt;&#x2F;ul&gt; &lt;h4 id&#x3D;代码&gt;&lt;a href&#x3D;#代码 class&#x3D;headerlink title&#x3D;代码&gt;&lt;&#x2F;a&gt;代码&lt;&#x2F;h4&gt;<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> Now=<span class="number">0</span>;    <span class="comment">// 当前生命值</span></span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;    <span class="comment">// 能够捡起的数量 </span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">200004</span>];</span><br><span class="line"><span class="keyword">int</span> n;     <span class="comment">// position数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/div1A.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    priority_queue&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;,greater&lt;<span class="keyword">int</span>&gt;&gt; Q;   <span class="comment">// 小根堆</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Now+a[i]&lt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!Q.<span class="built_in">empty</span>()&amp;&amp;Q.<span class="built_in">top</span>()&lt;a[i])&#123;</span><br><span class="line">                <span class="comment">// 将小根堆顶部替换掉，由于Now本来就大于0，所以反悔后Now也大于0</span></span><br><span class="line">                Now=Now+a[i]-Q.<span class="built_in">top</span>();</span><br><span class="line">                Q.<span class="built_in">pop</span>();</span><br><span class="line">                Q.<span class="built_in">push</span>(a[i]);</span><br><span class="line">                </span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Now+=a[i];</span><br><span class="line">            Q.<span class="built_in">push</span>(a[i]);    <span class="comment">// 把之前要的记录下来</span></span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>">
   </div>
   <!--文末结束语-->
   
@@ -336,14 +318,14 @@
   
   <nav>
     
-      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/06/09/%E6%B3%A5%E9%B3%85/">
+      <a rel="prev" class="post-nav-item mdui-float-left" href="/2021/06/09/Poston/">
         <i class="iconfont icon-angle-left"></i>
-        <span>泥鳅</span>
+        <span>Poston</span>
       </a>
     
     
-      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/06/09/Postons/">
-        <span>Poston</span>
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/04/18/%E5%85%B3%E4%BA%8E%E5%AF%B9floyd%E7%AE%97%E6%B3%95%E7%9A%84%E8%B4%A8%E7%96%91/">
+        <span>关于对floyd算法的质疑</span>
         <i class="iconfont icon-angle-right"></i>
       </a>
     
@@ -357,7 +339,7 @@
     <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
     <ul class="mdui-menu" id="toc">
       <li class="mdui-menu-item">
-        <a href="/2021/06/09/Poston/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <a href="/2021/06/09/Postons/" id="toc-header" class="mdui-ripple">文章目录</a>
         
       </li>
     </ul>
