@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    
+    <meta name="renderer" content="webkit"/>
+    <meta name="force-rendering" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
+    
+    
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Regular.woff2" as="font">
+        <link rel="preload" crossorigin="crossorigin" href="/fonts/roboto/Roboto-Bold.woff2" as="font">
+    
+    
+    
+        <link rel="shortcut icon" href="/icons/favicon.ico">
+    
+
+    
+    
+        
+<link rel="stylesheet" href="/css/mdui.min.v1.0.0.css">
+
+    
+    
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/iconfont.css">
+
+
+    
+    
+
+    
+        <script data-ad-client="ca-" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+    
+    
+    <title>
+        
+            数据备份 | CJF的博客
+        
+    </title>
+    
+    
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body class="mdui-drawer-body-left mdui-appbar-with-toolbar mdui-theme-primary-teal mdui-theme-accent-blue">
+  
+  <header class="mdui-appbar mdui-appbar-fixed">
+  <div id="toolbar" class="mdui-toolbar mdui-color-theme">
+    <button class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#sidebar', swipe: true}"><i class="iconfont icon-menu"></i></button>
+    <a href="/" class="mdui-typo-headline">CJF的博客</a>
+    <a href="/" class="header-subtitle mdui-typo-headline"></a>
+    <div class="mdui-toolbar-spacer"></div>
+    <button class="mdui-btn mdui-btn-icon" mdui-dialog="{target: '#search'}" mdui-tooltip="{content: 'search'}"><i class="iconfont icon-search"></i></button>
+  </div>
+</header>
+
+<div class="mdui-dialog" id="search">
+  
+    <div class="search-form">
+      <input type="search" class="search-form-input" placeholder="请输入关键字" onfocus="listenSearchFunc()">
+    </div>
+    <div class="search-result" data-resource="/search.xml"></div>
+  
+</div>
+
+  <aside id="sidebar" class="mdui-drawer">
+    <div class="mdui-tab" mdui-tab>
+        <a href="#sidebar-tab1" id="sidebartab" class="mdui-ripple mdui-tab-active">站点概览</a>
+        <a href="#sidebar-tab2" id="sidebartab" class="mdui-ripple">关于</a>
+    </div>
+
+    
+    <div id="sidebar-tab1" class="mdui-p-a-1">
+        <div class="mdui-list">
+            
+                
+                <a href="/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-home"></i>
+                    </div>
+                    <div class="mdui-list-item-content">主页</div>
+                </a>
+            
+                
+                <a href="/tags/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-bookmark"></i>
+                    </div>
+                    <div class="mdui-list-item-content">标签</div>
+                </a>
+            
+                
+                <a href="/categories/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-folder"></i>
+                    </div>
+                    <div class="mdui-list-item-content">分类</div>
+                </a>
+            
+                
+                <a href="/archives/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-archive"></i>
+                    </div>
+                    <div class="mdui-list-item-content">归档</div>
+                </a>
+            
+                
+                <a href="/tools/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-tools"></i>
+                    </div>
+                    <div class="mdui-list-item-content">工具箱</div>
+                </a>
+            
+                
+                <a href="/about/" class="mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-user"></i>
+                    </div>
+                    <div class="mdui-list-item-content">关于</div>
+                </a>
+            
+            <div class="mdui-list-item mdui-ripple">
+                <div class="mdui-list-item-icon">
+                    <i class="iconfont icon-moon"></i>
+                </div>
+                <div class="mdui-list-item-content">夜间模式</div>
+                <label class="mdui-switch" id="darkmode">
+                  <input type="checkbox" id="nightmode_switch"/>
+                  <i class="mdui-switch-icon"></i>
+                </label>
+            </div>           
+        </div>
+    </div>
+
+    
+    <div id="sidebar-tab2" class="mdui-p-a-1">
+        <div class="sidebar-overview">
+            <div class="sidebar-avatar">
+                
+                    <img src="/icons/avatar.gif"/>
+                
+            </div>
+            <div class="sidebar-author-name">CJF</div>
+            <div class="sidebar-description">用于写笔记或者记录一些错误及难题</div>
+        </div>
+        <div class="sidebar-links">
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-mail"></i></span>
+                    <a href="mailto:xxx@xxx.com" class="mdui-chip-title">E-Mail</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-github"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">GitHub</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-steam"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Steam</a>
+                </div>
+            
+                
+                <div class="mdui-chip">
+                    <span class="mdui-chip-icon"><i class="iconfont icon-weibo"></i></span>
+                    <a target="_blank" rel="noopener" href="https://your.url" class="mdui-chip-title">Weibo</a>
+                </div>
+            
+        </div>
+        <ul class="mdui-list" mdui-collapse="{accordion: true}">
+            <li class="mdui-collapse-item">
+                <div class="mdui-collapse-item-header mdui-list-item mdui-ripple">
+                    <div class="mdui-list-item-icon">
+                        <i class="iconfont icon-link"></i>
+                    </div>
+                    <div class="mdui-list-item-content">友情链接</div>
+                    <div class="mdui-collapse-item-arrow">
+                        <i class="mdui-list-item-icon iconfont icon-angle-down"></i>
+                    </div>
+                </div>
+                <ul id="linksList" class="mdui-collapse-item-body mdui-list mdui-list-dense">
+                    
+                        <a target="_blank" rel="noopener" href="https://garybear.cn/hexo-theme-meadow/" class="mdui-list-item mdui-ripple">
+                            Meadow说明文档
+                        </a>
+                    
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="mdui-divider"></div>
+    
+    
+</aside>
+  
+  <main id="main-contain" class="mdui-container mdui-m-t-5">
+    <article id="article" class="mdui-card mdui-p-b-2 mdui-m-b-5">
+  <header class="mdui-card-media">
+    
+    
+      <div class="post-header"> 
+  <a class="post-header-title" href="/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/">数据备份</a>
+  <div class="post-header-meta">
+    <span>
+      <span class="iconfont icon-calendar"></span>
+      发布于:&nbsp;2021-06-11
+    </span>
+    <span>
+      <span class="iconfont icon-calendar-check"></span>
+      更新于:&nbsp;2021-06-11
+    </span>
+    <span>
+      <span class="iconfont icon-folder"></span>
+      分类于:&nbsp;<a class="category-link" href="/categories/div1/">-div1</a>
+    </span>
+    
+      <span>
+        <span class="iconfont icon-eye"></span>
+        阅读次数:&nbsp;
+        <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span></span>
+      </span>
+    
+  </div>
+</div>   
+    
+
+
+
+    
+    
+    <div class="mdui-card-menu">
+    
+      <button class="mdui-btn mdui-btn-icon mdui-text-color-teal" mdui-menu="{target: '#share_menu', align: 'right'}"><i class="iconfont icon-share"></i></button>
+      <ul class="mdui-menu" id="share_menu">
+        <li class="mdui-menu-item">
+          <a href="http://service.weibo.com/share/share.php?appkey=&title=数据备份&url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/&pic=https://Coding-Bug.github.io/null&searchPic=false&style=simple" target="_blank" class="mdui-ripple">分享到 Weibo</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://twitter.com/intent/tweet?text=数据备份&url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/&via=CJF" target="_blank" class="mdui-ripple">分享到 Twitter</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" target="_blank" class="mdui-ripple">分享到 Facebook</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://plus.google.com/share?url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" target="_blank" class="mdui-ripple">分享到 Google+</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/&title=数据备份" target="_blank" class="mdui-ripple">分享到 LinkedIn</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="http://connect.qq.com/widget/shareqq/index.html?site=CJF的博客&title=数据备份&summary=用于写笔记或者记录一些错误及难题&pics=https://Coding-Bug.github.io/null&url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" target="_blank" class="mdui-ripple">分享到 QQ</a>
+        </li>
+        <li class="mdui-menu-item">
+          <a href="https://telegram.me/share/url?url=https://coding-bug.github.io/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/&text=数据备份" target="_blank" class="mdui-ripple">分享到 Telegram</a>
+        </li>
+      </ul>
+    
+  </div>
+  </header>
+  
+  
+  
+  
+  <div class="post-tags">
+    
+      <i class="iconfont icon-tag">
+        <a rel="tag" href = /tags/%E8%B4%AA%E5%BF%83-%E5%8F%8D%E6%82%94-%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/ >-贪心 -反悔 -优先队列</a>
+      </i>
+    
+  </div>
+
+  
+  <div class="mdui-card-content mdui-typo mdui-p-x-4">
+    <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><img src="/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/backUp.png" class="">
+<h3 id="题目简述"><a href="#题目简述" class="headerlink" title="题目简述"></a>题目简述</h3><p>大概就是有n个办公楼，要找出k对，每对之间拉一个电缆，并且每个楼只能用一次，求出最小的距离之和</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ul>
+<li>首先要明确，找出的n对楼里面，每对肯定是相邻的，若不相邻，则令其中间的任一一对代替，能得到更优结果</li>
+<li>如果每次只选择最小那对，也是不行的，如：<ul>
+<li>现在有一个原始的对序列 2 1 2 5 6，要找两队。则放到优先队列中有 1 2 2 5 6，如果先选最小的，则现在选的是1，由于1中两个城市在2 2 这两队中，所以2 2 要丢掉。则优先队列中能用的只剩下 5 6，则下次应该选择5。不难发现，如果不选1的话，选2 2明显会比选1 5好。到这里不难发现，我们要后悔。、</li>
+</ul>
+</li>
+<li>那么怎么进行后悔呢？<ul>
+<li>我们在选择最小的1之后，2 2 本来是要废掉的，但是我们不直接丢掉他们，而是创建一个新的数为 2+2-1=3 放入优先队列中。则优先队列中剩下的为 3 5 6，这样我们下次选3就相当于选了 2+2-1+1，即 2 2，后悔成功。</li>
+</ul>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p>每次取最小的一个区间，然后将这个数两边得区间合并，并减去这个数，构成后悔结点（则原区间最左边和最右边还应该加一段无穷大）。一直做下去，最终即可得到结果。<br>区间段用链表维护。需要注意的是链表的更新。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> s[<span class="number">100002</span>];     <span class="comment">// 每个公司到起点的距离</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 每个相邻区间作为一个结点</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">      <span class="keyword">long</span> <span class="keyword">long</span>  Len;            <span class="comment">// 区间的长度</span></span><br><span class="line">      <span class="keyword">int</span> pos;                   <span class="comment">// 当前结点的位置c</span></span><br><span class="line">&#125;NODE;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 仿函数</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tmp</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span> <span class="params">(Node a,Node b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.Len&gt;b.Len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> isUsed[<span class="number">100002</span>];<span class="comment">// 判断某个结点是否已经使用过</span></span><br><span class="line"><span class="keyword">int</span> Next[<span class="number">100002</span>];   <span class="comment">// 存放某个结点的下一个结点</span></span><br><span class="line"><span class="keyword">int</span> Prio[<span class="number">100002</span>];   <span class="comment">// 存放某个节点的一个结点 </span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> val[<span class="number">100002</span>]; <span class="comment">// 要得到某个位置的值信息，不能从队列里获得，要另存  </span></span><br><span class="line"></span><br><span class="line">NODE sNode;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/div1C.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">// 初始化标记数组</span></span><br><span class="line">    <span class="built_in">memset</span>(isUsed,<span class="literal">false</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(isUsed));</span><br><span class="line">    <span class="keyword">int</span> n,k;    <span class="comment">// 办公楼数和可以铺设的电网数</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;s[i];</span><br><span class="line">    &#125;</span><br><span class="line">    priority_queue&lt;NODE,vector&lt;NODE&gt;,tmp&gt; Q;    <span class="comment">// 设置一个小根堆存放现有结点</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化第一个结点</span></span><br><span class="line">    sNode.Len=s[<span class="number">1</span>]-s[<span class="number">0</span>];</span><br><span class="line">    sNode.pos=<span class="number">1</span>;    <span class="comment">// 从1开始</span></span><br><span class="line">    Prio[<span class="number">1</span>]=<span class="number">0</span>;     <span class="comment">// 第一个结点前驱为空</span></span><br><span class="line">    Next[<span class="number">1</span>]=<span class="number">2</span>;       <span class="comment">// 后继为1</span></span><br><span class="line">    val[<span class="number">1</span>]=sNode.Len;</span><br><span class="line">    Q.<span class="built_in">push</span>(sNode);  <span class="comment">// 第一个结点入队</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化其他结点,最后一个结点的下标是n-1，因为一共有n-1个结点</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>; i&lt;n<span class="number">-1</span>;++i)&#123;</span><br><span class="line">        sNode.Len=s[i+<span class="number">1</span>]-s[i];</span><br><span class="line">        sNode.pos=i+<span class="number">1</span>;    </span><br><span class="line">        Prio[i+<span class="number">1</span>]=i;     </span><br><span class="line">        Next[i+<span class="number">1</span>]=i+<span class="number">2</span>;       </span><br><span class="line">        val[i+<span class="number">1</span>]=sNode.Len;</span><br><span class="line">        Q.<span class="built_in">push</span>(sNode);     </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 两端设极大</span></span><br><span class="line">    val[<span class="number">0</span>]=<span class="number">2e9</span>;</span><br><span class="line">    val[n]=<span class="number">2e9</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 进行贪心选择</span></span><br><span class="line">    <span class="keyword">while</span>(k!=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="comment">// 跳过无效结点</span></span><br><span class="line">        <span class="keyword">while</span>(isUsed[Q.<span class="built_in">top</span>().pos])&#123;</span><br><span class="line">            Q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        sNode=Q.<span class="built_in">top</span>();  <span class="comment">// 取出长度最小的那个有效结点</span></span><br><span class="line">        Q.<span class="built_in">pop</span>();</span><br><span class="line">        ans+=sNode.Len;  <span class="comment">// 取了这个点，答案要加上</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 求新的结点的长度，实现隐式反悔</span></span><br><span class="line">        sNode.Len=val[Prio[sNode.pos]]+val[Next[sNode.pos]]-val[sNode.pos];</span><br><span class="line">        val[sNode.pos]=sNode.Len;</span><br><span class="line">        </span><br><span class="line">      </span><br><span class="line">        <span class="comment">// 两端设置为已使用</span></span><br><span class="line">        isUsed[Prio[sNode.pos]]=<span class="literal">true</span>;</span><br><span class="line">        isUsed[Next[sNode.pos]]=<span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//更新新结点的前驱后继</span></span><br><span class="line">        Prio[sNode.pos]=Prio[Prio[sNode.pos]];</span><br><span class="line">        Next[sNode.pos]=Next[Next[sNode.pos]];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 更新前面的前面的后继和后面的后面的前驱</span></span><br><span class="line">        <span class="comment">// 注意Prio[sNode.pos]和Next[sNode.pos]已经变了</span></span><br><span class="line">        Next[Prio[sNode.pos]]=sNode.pos;</span><br><span class="line">        Prio[Next[sNode.pos]]=sNode.pos;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 新结点入队</span></span><br><span class="line">        Q.<span class="built_in">push</span>(sNode);</span><br><span class="line">        --k;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+  <!--文末结束语-->
+  
+    <div style="text-align:center;color: #ccc;font-size:24px;"> --- 本文结束 <i class="iconfont icon-heartbeat" style="font-size:24px;"></i> The End --- </div>
+  
+  <!--页脚广告-->
+  
+  <div class="mdui-divider"></div>
+  
+  <nav>
+    
+    
+      <a rel="next" class="post-nav-item mdui-float-right" href="/2021/06/09/Postons/">
+        <span>Postons</span>
+        <i class="iconfont icon-angle-right"></i>
+      </a>
+    
+  </nav>
+</article>
+
+
+
+
+  <div class="toc-button"  style="z-index: 100;">
+    <button class="mdui-fab mdui-ripple mdui-color-teal" mdui-menu="{target: '#toc'}"><i class="iconfont icon-list"></i></button>
+    <ul class="mdui-menu" id="toc">
+      <li class="mdui-menu-item">
+        <a href="/2021/06/11/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" id="toc-header" class="mdui-ripple">文章目录</a>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E7%AE%80%E8%BF%B0"><span class="toc-number">1.0.1.</span> <span class="toc-text">题目简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90"><span class="toc-number">1.0.2.</span> <span class="toc-text">分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.0.3.</span> <span class="toc-text">算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.0.4.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></li></ol>
+      </li>
+    </ul>
+  </div>
+
+
+
+    <div id="comment" class="mdui-card mdui-p-a-2 mdui-m-b-5">
+      <div class="mdui-tab" mdui-tab>
+        
+          <a href="#comment-tab0" class="mdui-ripple">gitalk</a>
+        
+          <a href="#comment-tab1" class="mdui-ripple">livere</a>
+        
+      </div>
+      
+        <div id="comment-tab0" class="mdui-p-a-2">
+          <div id="gitalk-container"></div>
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+<script>
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id:  md5(location.pathname) ,
+    distractionFreeMode: 'true',
+  });
+  gitalk.render('gitalk-container');
+</script>
+        </div>
+      
+        <div id="comment-tab1" class="mdui-p-a-2">
+          <div id="lv-container" data-id="city" data-uid="">
+  <script type="text/javascript">
+    (function (d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by LiveRe.</noscript>
+</div>
+        </div>
+      
+    </div>
+
+  </main>
+  <footer id="footer" class="mdui-text-center mdui-m-t-5 mdui-p-b-2 mdui-p-t-4 mdui-color-theme">
+  <div class="mdui-container">
+    <div class="mdui-row">
+      
+        <a href="https://beian.miit.gov.cn" rel="noopener" target="_blank"></a>
+      
+      <span>
+        &copy; 2015 - 2021 
+        
+          <span style="color:#d9333f" class="iconfont icon-heart"></span>
+        
+        CJF
+      </span>
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span>Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span>Theme: <a href="https://github.com/kb1000fx/Meadow" rel="noopener" target="_blank">Meadow</a></span>
+        </div>
+      
+    </div>
+    <div class="mdui-row">
+      
+        <div class="mdui-col-xs-6 mdui-text-right">
+          <span id="busuanzi_container_site_uv" style="display: none;"> <span class="iconfont icon-user"></span>总访客量 <span id="busuanzi_value_site_uv"></span></span>
+        </div>
+        <div class="mdui-col-xs-6 mdui-text-left">
+          <span id="busuanzi_container_site_pv" style="display: none;"> <span class="iconfont icon-eye"></span>总访问量 <span id="busuanzi_value_site_pv"></span></span>
+        </div>
+      
+    </div>
+ </div>
+</footer>
+  
+  <button id="gotop" class="mdui-fab mdui-fab-fixed mdui-fab-hide mdui-ripple mdui-color-teal" style="z-index:100;"><i class="iconfont icon-arrowup"></i></button>
+  
+  
+
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({
+        startOnLoad: true,
+        theme: "default"
+    });</script>
+
+
+
+
+    
+<script src="/js/mdui.min.v1.0.0.js"></script>
+
+
+
+
+<script src="/js/meadow.js"></script>
+
+</body>
+</html >
