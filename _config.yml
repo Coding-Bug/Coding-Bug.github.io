@@ -5,7 +5,7 @@
 # Site
 title: CJF的博客
 subtitle: ''
-description: '用于写笔记或者记录一些错误及难题'
+description: '我系菜狗'
 keywords: CJF
 author: CJF
 language: zh-CN
@@ -107,3 +107,4 @@ deploy:
   repository: git@github.com:Coding-Bug/Coding-Bug.github.io.git
   # example, https://github.com/hexojs/hexojs.github.io
   branch: master
+
