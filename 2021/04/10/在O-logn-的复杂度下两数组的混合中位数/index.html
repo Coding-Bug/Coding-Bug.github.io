@@ -86,11 +86,7 @@
   </style>
 </noscript>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -239,7 +235,7 @@
 </li>
 <li><p>（2）MedX&gt;MedY</p>
 <ul>
-<li>如果n是奇数<br>这种情况下，比X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>小的数至少有n+1个，所以X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>一定比中位数大。所以中位数不会在X<sub>(n-1)/2+1</sub>,X(n-1)/2+2</sub>,…,X<sub>n-1</sub>中。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>(n-1)/2-1</sub>一定比中位数小。所以中位数在X<sub>0</sub>,X<sub>1</sub>,…,X<sub>(n-1)/2</sub>和Y<sub>(n-1)/2</sub>,Y<sub>n/2+2</sub>,…,Y<sub>n-1</sub>中。则只需要考察X[0:(n-1)/2:n-1]和Y[0:(n-1)/2]。</li>
+<li>如果n是奇数<br>这种情况下，比X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>小的数至少有n+1个，所以X<sub>(n-1)/2+1</sub>,X<sub>(n-1)/2+2</sub>,…,X<sub>n-1</sub>一定比中位数大。所以中位数不会在X<sub>(n-1)/2+1</sub>,X(n-1)/2+2&lt;/sub&gt;,…,X<sub>n-1</sub>中。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>(n-1)/2-1</sub>一定比中位数小。所以中位数在X<sub>0</sub>,X<sub>1</sub>,…,X<sub>(n-1)/2</sub>和Y<sub>(n-1)/2</sub>,Y<sub>n/2+2</sub>,…,Y<sub>n-1</sub>中。则只需要考察X[0:(n-1)/2:n-1]和Y[0:(n-1)/2]。</li>
 <li>如果n是偶数<br>则X<sub>(n-1)/2+2</sub>,X<sub>(n-1)/2+3</sub>,…,X<sub>n-1</sub>小的数至少有n+1个，所以X<sub>(n-1)/2+2</sub>,X<sub>(n-1)/2+3</sub>,…,X<sub>n-1</sub>一定比中位数大。同样Y<sub>0</sub>,Y<sub>1</sub>,…,Y<sub>(n-)/2-2</sub>一定比中位数小。则只需要考察X[0:(n-1)/2+1]和Y[(n-1)/2-1:n-1]。</li>
 </ul>
 </li>

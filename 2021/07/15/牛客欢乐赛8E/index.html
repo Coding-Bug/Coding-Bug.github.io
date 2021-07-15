@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png">
 <meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/2.png">
 <meta property="article:published_time" content="2021-07-14T23:57:06.000Z">
-<meta property="article:modified_time" content="2021-07-15T11:00:02.538Z">
+<meta property="article:modified_time" content="2021-07-15T11:17:34.742Z">
 <meta property="article:author" content="CJF">
 <meta property="article:tag" content="数论">
 <meta property="article:tag" content="组合数">
@@ -92,11 +92,7 @@
   </style>
 </noscript>
 
-<!-- hexo injector head_end start -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --></head>
+</head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -209,7 +205,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-07-15 07:57:06 / 修改时间：19:00:02" itemprop="dateCreated datePublished" datetime="2021-07-15T07:57:06+08:00">2021-07-15</time>
+              <time title="创建时间：2021-07-15 07:57:06 / 修改时间：19:17:34" itemprop="dateCreated datePublished" datetime="2021-07-15T07:57:06+08:00">2021-07-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -249,25 +245,21 @@
 <li>非法的情况即碰过了y=-1的情况如图。 <img src="/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png" class=""></li>
 <li>将与y=-1的最后一个交点之前的部分以y=-1为轴对折，可以发现这种情况对应了一种从(0,-2)到(n+m,n-m)的情况。实际在我们这种对折规矩下，所有从(0,0)到(n+m,n-m)的非法情况都和由从(0,-2)到(n+m,n-m)的所有情况一一对应，则所有非法情况种类可以通过求(0,-2)到(n+m,n-m)的<b>所有</b>情况求出。(合法情况是不会对应从(0,-2)到(n+m,n-m)的，因为合法情况没有与y=-1的交点，所以无法与我们规定的这种翻折对应。)<img src="/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/2.png" class=""></li>
 <li>非法情况是从(0,-2)到(n+m,n-m)，那么路径就要变。但是总的操作数不能变，因为横坐标还是0到n+m;<ul>
-<li>设操作1变为a种，操作2变为b种则$$\begin{cases}<br>  a+b=n+m\a-b=n-m+2<br>\end{cases}$$<br>解得 $$\begin{cases}<br>  a=n+1\b=m-1<br>\end{cases}$$<br>则非法情况总数为C(n+m,n+1)</li>
+<li>设操作1变为a种，操作2变为b种则<script type="math/tex">\begin{cases}a+b=n+m\\a-b=n-m+2\end{cases}</script><br>解得 <script type="math/tex">\begin{cases}a=n+1 \\ b=m-1 \end{cases}</script><br>则非法情况总数为C(n+m,n+1)</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <p>最后ans=C(n+m,n)-C(n+m,n+1)</p>
-<h3 id="组合数求解"><a href="#组合数求解" class="headerlink" title="组合数求解"></a>组合数求解</h3><p>$$C{a\atop m}\pmod p=\frac{n!}{m!(n-m!)}\pmod p$$<br>可以看出，如果直接求解组合数然后再取模，那么分子或者分母会溢出。而取模分配率对加减乘成立，如对乘法有  </p>
-<center>(a&nbsp;*&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;*&nbsp;(b%p)]%p</center>  
-但是对除法却不存在
-<center>(a&nbsp;/&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;/&nbsp;(b%p)]%p&nbsp;(错误)</center> 
-那怎么办呢，于是科学家们扔出了逆元这个玩意。  
-#### 逆元
-<b>定理</b>：若在mod&nbsp;p意义下，对于一个整数a，有$$a*x\equiv 1\pmod p$$那么这个整数x即为a的乘法逆元，同时a也为x的乘法逆元。  
-
+<h3 id="组合数求解"><a href="#组合数求解" class="headerlink" title="组合数求解"></a>组合数求解</h3><script type="math/tex; mode=display">C{a\atop m}\pmod p=\frac{n!}{m!(n-m!)}\pmod p</script><p>可以看出，如果直接求解组合数然后再取模，那么分子或者分母会溢出。而取模分配率对加减乘成立，如对乘法有  </p>
+<p><center>(a&nbsp;*&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;*&nbsp;(b%p)]%p</center><br>但是对除法却不存在</p>
+<p><center>(a&nbsp;/&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;/&nbsp;(b%p)]%p&nbsp;(错误)</center><br>那怎么办呢，于是科学家们扔出了逆元这个玩意。  </p>
+<h4 id="逆元"><a href="#逆元" class="headerlink" title="逆元"></a>逆元</h4><p><b>定理</b>：若在mod&nbsp;p意义下，对于一个整数a，有<script type="math/tex">a*x\equiv 1\pmod p</script>那么这个整数x即为a的乘法逆元，同时a也为x的乘法逆元。  </p>
 <p><b>充要条件</b>：a存在模p的乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，即a与p互质。  </p>
-<p><b>应用</b>：求$\frac{a}{b}%p$等同于求a * (b的逆元)%p   </p>
+<p><b>应用</b>：求$\frac{a}{b}\%p$等同于求a * (b的逆元)%p   </p>
 <ul>
-<li><b>证明</b>：<br>我们假设 $$\frac{a}{b}%p=m(a和b满足a%b=0)\tag{1}$$<br>由乘法逆元符合分配律对(1)式两边乘以b有$$a%p=(m(b%p))%p\tag{2}$$<br>即$$a\equiv m<em>b\pmod p\tag{3}$$<br>假设b的逆元是x，则(3)式两边乘以一个x有<br>$$a</em>x\equiv m<em>b</em>x\pmod p\tag{4}$$<br>由逆元的定理有$b<em>x\equiv 1\pmod p$则<br>$$a</em>x\equiv m\pmod p\tag{5}$$证毕</li>
+<li><b>证明</b>：<br>我们假设 <script type="math/tex">\frac{a}{b}\%p=m(a和b满足a\%b=0)\tag{1}</script><br>由乘法逆元符合分配律对(1)式两边乘以b有<script type="math/tex">a\%p=(m(b\%p))\%p\tag{2}</script><br>即<script type="math/tex">a\equiv m*b\pmod p\tag{3}</script><br>假设b的逆元是x，则(3)式两边乘以一个x有<script type="math/tex; mode=display">a*x\equiv m*b*x\pmod p\tag{4}</script>由逆元的定理有$b<em>x\equiv 1\pmod p$则<br>$$a</em>x\equiv m\pmod p\tag{5}$$证毕</li>
 </ul>
 <p>于是我们就可以把除法的求模运算转换为乘法的求模运算，从而可以利用分配律。</p>
 <p><b>类比</b>：其实逆元可以类比于普通乘法中的倒数，即当$b*x=1$时$\frac{1}{b}=x$，但是在求模运算中，x与$\frac{1}{b}$只是等同，而并非就是取倒数。</p>
@@ -277,21 +269,16 @@
 <li>如果a是p的倍数，$a^p\equiv a \pmod p$ </li>
 <li>如果a不是p的倍数，$a^{p-1}\equiv 1 \pmod p$  </li>
 </ol>
-<p>由乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，所以a不会是p的倍数，所以用第二条。将第二条转化以下有$$a*a^{p-2}\equiv 1\pmod p$$<br>则$a^{p-2}$就是a的逆元，证明自己去百度。</p>
+<p>由乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，所以a不会是p的倍数，所以用第二条。将第二条转化以下有<script type="math/tex">a*a^{p-2}\equiv 1\pmod p</script><br>则$a^{p-2}$就是a的逆元，证明自己去百度。</p>
 <p>最后利用快速幂求解即可。</p>
-<h4 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h4><p>快速幂即求解幂的快速算法。考察$3^{10}$,有<br>$$3^{10}=9^{5}=9<em>81^{2}=9</em>6561^{1}=(9*6561)*1^{0}$$<br>设幂为p，底数为b，则其算法思路为</p>
+<h4 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h4><p>快速幂即求解幂的快速算法。考察$3^{10}$,有</p>
+<script type="math/tex; mode=display">3^{10}=9^{5}=9*81^{2}=9*6561^{1}=(9*6561)*1^{0}</script><p>设幂为p，底数为b，则其算法思路为</p>
 <ol>
 <li>如果p是偶数，b=b*b；p&gt;&gt;1</li>
-<li>如果p是奇数，那么ans=ans * b；b=b * b</li>
+<li>如果p是奇数，那么ans=ans <em> b；b=b </em> b</li>
 </ol>
 <p>这样最后得到的结果即在ans中</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod =<span class="number">20100403</span>;</span><br><span class="line"><span class="keyword">int</span> n , m;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求阶乘</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fac</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = a;i&gt;=<span class="number">1</span>;--i)&#123;</span><br><span class="line">       ans=(ans*i%mod)%mod;</span><br><span class="line">       ans=ans%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 矩阵快速幂求逆元</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Fpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           ans=(ans*b)%mod;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 求组合数</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> a1=<span class="built_in">fac</span>(a);  <span class="comment">// 求分子</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> b1=(<span class="built_in">fac</span>(b)*<span class="built_in">fac</span>(a-b))%mod; <span class="comment">//分母</span></span><br><span class="line">    <span class="comment">//求b的逆元</span></span><br><span class="line">    b1=<span class="built_in">Fpow</span>(b1,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">return</span> ((a1%mod)*(b1%mod))%mod;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;test/E.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line">    ans=(<span class="built_in">C</span>(n+m,n)-<span class="built_in">C</span>(n+m,n+<span class="number">1</span>)+mod)%mod; <span class="comment">// 可能会求得附属，所以先加上模再取模，因为计算结果是分别取模之后的，所以小的可能本来就比mod小</span></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
 
     </div>
 
@@ -375,7 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%B1%82%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">组合数求解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-number">1.3.2.</span> <span class="nav-text">快速幂</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%B1%82%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">组合数求解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%86%E5%85%83"><span class="nav-number">1.3.1.</span> <span class="nav-text">逆元</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.2.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-number">1.3.3.</span> <span class="nav-text">快速幂</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -477,59 +464,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
