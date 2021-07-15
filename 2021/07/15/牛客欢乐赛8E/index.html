@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"coding-bug.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="题目链接题目大意这题给你n个1和m个0，组成一个字符串，并且对任意一个前缀，1都不能比0少。 分析这是一道比较典型的卡特兰数题。我们可以将问题看作是求解(n+m,n-m)有多少种01字符串组合方式,n+m是字符总数，n-m是1比0多的个数。从(0,0)开始，记将1放进集合记作操作1，将0放进集合记作操作2。  进行操作1，集合变成(x+1,y+1),及向右上角走。 进行操作2，集合变成(x+1,y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="牛客欢乐赛8E">
+<meta property="og:url" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/index.html">
+<meta property="og:site_name" content="CJF的博客">
+<meta property="og:description" content="题目链接题目大意这题给你n个1和m个0，组成一个字符串，并且对任意一个前缀，1都不能比0少。 分析这是一道比较典型的卡特兰数题。我们可以将问题看作是求解(n+m,n-m)有多少种01字符串组合方式,n+m是字符总数，n-m是1比0多的个数。从(0,0)开始，记将1放进集合记作操作1，将0放进集合记作操作2。  进行操作1，集合变成(x+1,y+1),及向右上角走。 进行操作2，集合变成(x+1,y">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png">
+<meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/2.png">
+<meta property="article:published_time" content="2021-07-14T23:57:06.000Z">
+<meta property="article:modified_time" content="2021-07-15T09:05:42.085Z">
+<meta property="article:author" content="CJF">
+<meta property="article:tag" content="数论">
+<meta property="article:tag" content="组合数">
+<meta property="article:tag" content="逆元">
+<meta property="article:tag" content="费马里小定理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png">
+
+<link rel="canonical" href="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>牛客欢乐赛8E | CJF的博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?<11ff1a384565ec96003abf443c3b41f8>";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CJF的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CJF">
+      <meta itemprop="description" content="我系菜狗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CJF的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          牛客欢乐赛8E
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-15 07:57:06 / 修改时间：17:05:42" itemprop="dateCreated datePublished" datetime="2021-07-15T07:57:06+08:00">2021-07-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">牛客</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%89%9B%E5%AE%A2/%E6%AF%94%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">比赛</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/17574/B">题目链接</a></h2><h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>这题给你n个1和m个0，组成一个字符串，并且对任意一个前缀，1都不能比0少。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这是一道比较典型的卡特兰数题。我们可以将问题看作是求解(n+m,n-m)有多少种01字符串组合方式,n+m是字符总数，n-m是1比0多的个数。<br>从(0,0)开始，记将1放进集合记作操作1，将0放进集合记作操作2。</p>
+<ul>
+<li>进行操作1，集合变成(x+1,y+1),及向右上角走。</li>
+<li>进行操作2，集合变成(x+1,y-1)，即往右下角走</li>
+</ul>
+<p>最后目标是走到(n+m,n-m)。而如果y碰到y=-1这条线，那么就是非法的。<br>于是问题就变成了从(0,0)状态走到(n+m,n-m)状态一共有多少种合法的走法。(走：即向空字符串从头到尾填充0和1，不同的走法就实现了0和1的不同组合)</p>
+<ul>
+<li>如果考虑所有状况，则很明显是C(n+m,n)   （1要走n步，从n+m步中选出n步的种类，即长度为n+m的字符串中有n个为1有多少种）</li>
+<li>所有合法种类我们不好求，但是非法可求，则用合法的减去非法的种类。<ul>
+<li>非法的情况即碰过了y=-1的情况如图。 <img src="/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png" class=""></li>
+<li>将与y=-1的最后一个交点之前的部分以y=-1为轴对折，可以发现这种情况对应了一种从(0,-2)到(n+m,n-m)的情况。实际在我们这种对折规矩下，所有从(0,0)到(n+m,n-m)的非法情况都和由从(0,-2)到(n+m,n-m)的所有情况一一对应，则所有非法情况种类可以通过求(0,-2)到(n+m,n-m)的<b>所有</b>情况求出。(合法情况是不会对应从(0,-2)到(n+m,n-m)的，因为合法情况没有与y=-1的交点，所以无法与我们规定的这种翻折对应。)<img src="/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/2.png" class=""></li>
+<li>非法情况是从(0,-2)到(n+m,n-m)，那么路径就要变。但是总的操作数不能变，因为横坐标还是0到n+m;<ul>
+<li>设操作1变为a种，操作2变为b种则$$\begin{cases}<br>  a+b=n+m\a-b=n-m+2<br>\end{cases}$$<br>解得 $$\begin{cases}<br>  a=n+1\b=m-1<br>\end{cases}$$<br>则非法情况总数为C(n+m,n+1)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>最后ans=C(n+m,n)-C(n+m,n+1)</p>
+<h3 id="组合数求解"><a href="#组合数求解" class="headerlink" title="组合数求解"></a>组合数求解</h3><p>$$C{a\atop m}\pmod p=\frac{n!}{m!(n-m!)}\pmod p$$<br>可以看出，如果直接求解组合数然后再取模，那么分子或者分母会溢出。而取模分配率对加减乘成立，如对乘法有  </p>
+<center>(a&nbsp;*&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;*&nbsp;(b%p)]%p</center>  
+但是对除法却不存在
+<center>(a&nbsp;/&nbsp;b)%p&nbsp;=&nbsp;[(a%p)&nbsp;/&nbsp;(b%p)]%p&nbsp;(错误)</center> 
+那怎么办呢，于是科学家们扔出了逆元这个玩意。  
+#### 逆元
+<b>定理</b>：若在mod&nbsp;p意义下，对于一个整数a，有$$a*x\equiv 1\pmod p$$那么这个整数x即为a的乘法逆元，同时a也为x的乘法逆元。  
+
+<p><b>充要条件</b>：a存在模p的乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，即a与p互质。  </p>
+<p><b>应用</b>：求$\frac{a}{b}%p$等同于求a * (b的逆元)%p   </p>
+<ul>
+<li><b>证明</b>：<br>我们假设 $$\frac{a}{b}%p=m(a和b满足a%b=0)\tag{1}$$<br>由乘法逆元符合分配律对(1)式两边乘以b有$$a%p=(m(b%p))%p\tag{2}$$<br>即$$a\equiv m<em>b\pmod p\tag{3}$$<br>假设b的逆元是x，则(3)式两边乘以一个x有<br>$$a</em>x\equiv m<em>b</em>x\pmod p\tag{4}$$<br>由逆元的定理有$b<em>x\equiv 1\pmod p$则<br>$$a</em>x\equiv m\pmod p\tag{5}$$证毕</li>
+</ul>
+<p>于是我们就可以把除法的求模运算转换为乘法的求模运算，从而可以利用分配律。</p>
+<p><b>类比</b>：其实逆元可以类比于普通乘法中的倒数，即当$b*x=1$时$\frac{1}{b}=x$，但是在求模运算中，x与$\frac{1}{b}$只是等同，而并非就是取倒数。</p>
+<h4 id="费马小定理"><a href="#费马小定理" class="headerlink" title="费马小定理"></a>费马小定理</h4><p>那么逆元怎么求解呢，可不是像普通乘法那样直接是倒数。则可以通过定义$a*x\equiv1\pmod p$来求解逆元。<br>由于在ACM中大多数时候p是质数，否则容易找到余数的规律，所以用费马里小定理即可求解a的逆元。  </p>
+<p><b>定理：</b>  假如a是一个整数，p是一个质数，那么</p>
+<ol>
+<li>如果a是p的倍数，$a^p\equiv a \pmod p$ </li>
+<li>如果a不是p的倍数，$a^{p-1}\equiv 1 \pmod p$  </li>
+</ol>
+<p>由乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，所以a不会是p的倍数，所以用第二条。将第二条转化以下有$$a*a^{p-2}\equiv 1\pmod p$$<br>则$a^{p-2}$就是a的逆元，证明自己去百度。</p>
+<p>最后利用快速幂求解即可。</p>
+<h4 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h4><p>快速幂即求解幂的快速算法。考察$3^{10}$,有<br>$$3^{10}=9^{5}=9<em>81^{2}=9</em>6561^{1}=(9*6561)*1^{0}$$<br>设幂为p，底数为b，则其算法思路为</p>
+<ol>
+<li>如果p是偶数，b=b*b；p&gt;&gt;1</li>
+<li>如果p是奇数，那么ans=ans * b；b=b * b</li>
+</ol>
+<p>这样最后得到的结果即在ans中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod =<span class="number">20100403</span>;</span><br><span class="line"><span class="keyword">int</span> n , m;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求阶乘</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fac</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = a;i&gt;=<span class="number">1</span>;--i)&#123;</span><br><span class="line">       ans=(ans*i%mod)%mod;</span><br><span class="line">       ans=ans%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 矩阵快速幂求逆元</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Fpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           ans=(ans*b)%mod;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 求组合数</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> a1=<span class="built_in">fac</span>(a);  <span class="comment">// 求分子</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> b1=(<span class="built_in">fac</span>(b)*<span class="built_in">fac</span>(a-b))%mod; <span class="comment">//分母</span></span><br><span class="line">    <span class="comment">//求b的逆元</span></span><br><span class="line">    b1=<span class="built_in">Fpow</span>(b1,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">return</span> ((a1%mod)*(b1%mod))%mod;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;test/E.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line">    ans=(<span class="built_in">C</span>(n+m,n)-<span class="built_in">C</span>(n+m,n+<span class="number">1</span>)+mod)%mod; <span class="comment">// 可能会求得附属，所以先加上模再取模，因为计算结果是分别取模之后的，所以小的可能本来就比mod小</span></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E8%AE%BA/" rel="tag"># 数论</a>
+              <a href="/tags/%E7%BB%84%E5%90%88%E6%95%B0/" rel="tag"># 组合数</a>
+              <a href="/tags/%E9%80%86%E5%85%83/" rel="tag"># 逆元</a>
+              <a href="/tags/%E8%B4%B9%E9%A9%AC%E9%87%8C%E5%B0%8F%E5%AE%9A%E7%90%86/" rel="tag"># 费马里小定理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/25/USST%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A/" rel="prev" title="USST题解报告">
+      <i class="fa fa-chevron-left"></i> USST题解报告
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%B1%82%E8%A7%A3"><span class="nav-number">1.3.</span> <span class="nav-text">组合数求解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B4%B9%E9%A9%AC%E5%B0%8F%E5%AE%9A%E7%90%86"><span class="nav-number">1.3.1.</span> <span class="nav-text">费马小定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="nav-number">1.3.2.</span> <span class="nav-text">快速幂</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CJF"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">CJF</p>
+  <div class="site-description" itemprop="description">我系菜狗</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
