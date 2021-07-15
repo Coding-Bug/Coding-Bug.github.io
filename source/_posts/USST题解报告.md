@@ -71,9 +71,9 @@ int main(){
 这是一个数学题
 ## 分析
 题目大概的意思是定义了一个函数  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <b>f(i,m)=p<sub>1</sub><sup> $\lfloor  \frac{a1}{m}  \rfloor$</sup> * p<sub>2</sub><sup>a<sub>2<sub></sup> * ... * p<sub>k</sub><sup> a<sub>k</sub></sup></b>   
+$$f(i,m)=p_{1}^{ \lfloor\frac{a1}{m}  \rfloor}*p_{2}^{a_2} * ... * p^{k}_ {a^k}$$   
 其中p<sub>1</sub>,p<sub>2</sub> ...p<sub>k</sub>为i的质因数。给定参数n,m,L求  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;$\sum\limits_{i=L+1}^{L+n}$&nbsp;i&nbsp;-&nbsp;f(i,m)  
+$$\sum\limits_{i=L+1}^{L+n}-f(i,m)$$
 这关系到i的质因数的问题，可以用线性筛求质因数。又f(i,m)只和m与其最小质因子有关，我们在线性筛的时候合数也是被其最小质因子筛掉。所以想到从线性筛的基础上进行状态转移，由小的质数推出合数的f(i,m)，从而使求答案也变成线性。另一种是求出了素数之后直接暴力，也能过。  
 根据以下算法枚举&nbsp;i&nbsp;进行计算
 * 当i是质数的时候，当m=1时，f[i]=i,否则f[i]=1。（注意：1不是质因数）  

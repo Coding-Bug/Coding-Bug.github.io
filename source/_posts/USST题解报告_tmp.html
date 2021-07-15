@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>USST题解报告.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///f%3A//MyCourse//MyBlog//themes//typora-theme-next//next.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E4%B8%8A%E6%B5%B7%E7%90%86%E5%B7%A5%E6%A0%A1%E8%B5%9B%E9%A2%98%E8%A7%A3%E6%8A%A5%E5%91%8A">上海理工校赛题解报告</h1>
+<h2 id="%E5%B0%8F%E7%BB%93">小结</h2>
+<p>数学题，不会</p>
+<h2 id="b%E9%A2%98-bheith-i-ngra-le">B题 <a href="https://ac.nowcoder.com/acm/contest/17574/B">Bheith i ngra le</a></h2>
+<p>当初挣扎了一下，然后不会求给定i行j列的格子有多少单调曲线，就放弃了。</p>
+<h2 id="%E5%88%86%E6%9E%90">分析</h2>
+<ul>
+<li>题目的核心是是求给定i行j列的格子能够构造多少调单调曲线。可以用dp或者组合求解，不喜欢数学的我毅然投奔了dp。</li>
+<li>不难发现，当给定了宽为i，高为j的格子矩阵的时候，我们分析右上角那块，如果这块不画，那么所有情况就会变成dp[i][j-1],如果这块画上，那么情况就会是dp[i-1][j]。则得到状态转移方程dp[i][j]=dp[i][j-1]+dp[i-1][j]。当然，边界条件还是值得考虑一下的。</li>
+<li>算出dp数组后，性高彩烈的用n<sup>3</sup>去套老鹅。其实我们确定了山顶左边位置l之后不用去确定右边的r，dp[n-l][h]就是右边包含山顶在内的全部可能。所以ans=ans+dp[l-1][h-1]*dp[n-l][h]即可。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> dp[<span class="hljs-number">2003</span>][<span class="hljs-number">2003</span>];
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> mod=<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+	<span class="hljs-keyword">int</span> n,m;
+	<span class="hljs-built_in">cin</span> &gt;&gt;n&gt;&gt;m;
+    <span class="hljs-comment">// 初始化高度为1时</span>
+	dp[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]=<span class="hljs-number">2</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;i&lt;=n;++i){
+		dp[i][<span class="hljs-number">1</span>]=dp[i<span class="hljs-number">-1</span>][<span class="hljs-number">1</span>]+<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-comment">// 初始化宽度为1的时候</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span>;j&lt;=m;++j){
+		dp[<span class="hljs-number">1</span>][j]=dp[<span class="hljs-number">1</span>][j<span class="hljs-number">-1</span>]+<span class="hljs-number">1</span>;
+	} 
+    <span class="hljs-comment">// 求dp，i为宽，j为高</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;i&lt;=n;++i){
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">2</span>;j&lt;=m;++j){
+           dp[i][j]=(dp[i][j<span class="hljs-number">-1</span>]+dp[i<span class="hljs-number">-1</span>][j])%mod;
+		}
+	}
+	
+	<span class="hljs-comment">// 宽度为0时答案应该为1，因为下面用的乘法</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>;j&lt;=m;++j){
+		dp[<span class="hljs-number">0</span>][j]=<span class="hljs-number">1</span>;
+	} 
+
+   <span class="hljs-comment">// 高度为0时，也应该是1，即取0</span>
+   <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;=n;++i){
+	   dp[i][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+   }
+	
+	<span class="hljs-comment">// cout&lt;&lt;dp[1][1]&lt;&lt;endl&lt;&lt;dp[2][1]&lt;&lt;endl&lt;&lt;dp[1][2]&lt;&lt;endl&lt;&lt;dp[2][2]&lt;&lt;endl&lt;&lt;dp[1][3]&lt;&lt;endl&lt;&lt;dp[2][3]&lt;&lt;endl; </span>
+
+	<span class="hljs-comment">// 枚举山顶的情况,l是左边，r是右边，h是山高</span>
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> l = <span class="hljs-number">1</span>;l&lt;=n;++l){
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> h = <span class="hljs-number">1</span>;h&lt;=m;++h){
+               ans = (ans+(dp[l<span class="hljs-number">-1</span>][h<span class="hljs-number">-1</span>]*dp[n-l][h])%mod)%mod;   <span class="hljs-comment">// 是左边的情况乘以右边的情况</span>
+			}
+	}
+	
+	<span class="hljs-comment">// 加上山顶全为0的情况，只有一种</span>
+	 ans=(ans+<span class="hljs-number">1</span>)%mod;
+
+	<span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<h2 id="j%E9%A2%98-jxcjesus">J题 <a href="https://ac.nowcoder.com/acm/contest/17574/J">JXC&amp;JESUS</a></h2>
+<p>这是一个数学题</p>
+<h2 id="%E5%88%86%E6%9E%90">分析</h2>
+<p>题目大概的意思是定义了一个函数<br>
+$$f(i,m)=p_{1}^{ \lfloor\frac{a1}{m}  \rfloor}*p_{2}^{a_2} * ... * p^{k}_ {a^k}$$<br>
+其中p<sub>1</sub>,p<sub>2</sub> ...p<sub>k</sub>为i的质因数。给定参数n,m,L求<br>
+$$\sum\limits_{i=L+1}^{L+n}-f(i,m)$$
+这关系到i的质因数的问题，可以用线性筛求质因数。又f(i,m)只和m与其最小质因子有关，我们在线性筛的时候合数也是被其最小质因子筛掉。所以想到从线性筛的基础上进行状态转移，由小的质数推出合数的f(i,m)，从而使求答案也变成线性。另一种是求出了素数之后直接暴力，也能过。<br>
+根据以下算法枚举 i 进行计算</p>
+<ul>
+<li>当i是质数的时候，当m=1时，f[i]=i,否则f[i]=1。（注意：1不是质因数）</li>
+<li>枚举质数prime[j]利用i对i*prime[j]进行推算。
+<ul>
+<li>当prime[j]不能整除i时，则prime[j]是i*prime[j]的最小质因子，且只有一个，cnt[i * prime[j]] = 1。当m = 1时，f[i * prime[j]] = i *prime[j],否则f[i * prime[j]] = i。(因为此时$\lfloor  \frac{a1}{m}  \rfloor$为0)</li>
+<li>当prime[j]能整除i时，则prime[j]也是i的最小质因子，此时cnt[i * prime[j]] = cnt[i] + 1。当cnt[i * prime[j]]%m =0 时，f[i * prime[j]] = i *prime[j],否则f[i * prime[j]] = i。（此时应该枚举新的i，就如线性筛那样。）</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX 20000003</span>
+<span class="hljs-keyword">int</span> prime[MAX];   <span class="hljs-comment">// 存素数</span>
+<span class="hljs-keyword">bool</span> isprime[MAX]; <span class="hljs-comment">// 判断是否素数</span>
+<span class="hljs-keyword">int</span> n,m,L;
+<span class="hljs-keyword">int</span> ans=<span class="hljs-number">0</span>;   <span class="hljs-comment">// 存放答案</span>
+<span class="hljs-keyword">int</span> cnt[MAX]; <span class="hljs-comment">// 存放最小质因数的个数</span>
+<span class="hljs-keyword">int</span> CNT=<span class="hljs-number">1</span>;
+<span class="hljs-keyword">int</span> f[MAX];  <span class="hljs-comment">// f存起来，因为可能提前求得</span>
+<span class="hljs-keyword">int</span> minp[MAX]; <span class="hljs-comment">// 记录合数的最小质因子</span>
+
+<span class="hljs-comment">// 求素数</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">calPrime</span><span class="hljs-params">()</span></span>{
+    prime[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+    isprime[<span class="hljs-number">0</span>]=isprime[<span class="hljs-number">1</span>]=isprime[<span class="hljs-number">2</span>]=<span class="hljs-literal">true</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">2</span>;i&lt;=MAX;++i){
+        <span class="hljs-keyword">if</span>(isprime[i]){
+            prime[CNT++]=i;
+        }
+        <span class="hljs-comment">// 将i的倍数标记为合数，合数只会被其最小质因子标记，所以很方便可求出最小质因子</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j&lt;CNT&amp;&amp;i*prime[j]&lt;=MAX;++j){
+            isprime[i*prime[j]]=<span class="hljs-literal">false</span>;
+            <span class="hljs-comment">// 如果i能够整除prime[j]，则退出</span>
+            <span class="hljs-keyword">if</span>(i%prime[j]==<span class="hljs-number">0</span>){
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+    }
+}
+<span class="hljs-comment">// 直接求f</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span>  <span class="hljs-title">F</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i =<span class="hljs-number">2</span>;i&lt;=L+n;++i){
+       
+        <span class="hljs-comment">// i是质数的情况,其最小质因数为其本身,则根据m讨论f</span>
+        <span class="hljs-keyword">if</span>(isprime[i]){
+            <span class="hljs-keyword">if</span>(m==<span class="hljs-number">1</span>){
+                f[i]=i;
+                cnt[i]=<span class="hljs-number">1</span>;
+            }<span class="hljs-keyword">else</span>{
+                f[i]=<span class="hljs-number">1</span>;
+                cnt[i]=<span class="hljs-number">1</span>;
+            }
+        }
+        <span class="hljs-comment">// i不是质数的情况,枚举质数，不包括1</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">1</span>;j&lt;CNT&amp;&amp;i*prime[j]&lt;=L+n;++j){
+            <span class="hljs-comment">// 如果i不能整除prime[j],此时prime[j]是i*prime[j]的最小质因子，因为i非质数</span>
+           <span class="hljs-keyword">if</span>(i%prime[j]!=<span class="hljs-number">0</span>){  
+               <span class="hljs-keyword">if</span>(m==<span class="hljs-number">1</span>){
+                   f[i*prime[j]]=i*prime[j];
+               }<span class="hljs-keyword">else</span>{   <span class="hljs-comment">//m!=1时，最最小质因数就无贡献了</span>
+                   f[i*prime[j]]=i;
+               }
+               cnt[i*prime[j]]=<span class="hljs-number">1</span>;
+           }<span class="hljs-keyword">else</span>{ <span class="hljs-comment">// 如果prime[j]能整除当前的i，则prime[j]也是i的最小质因子</span>
+               cnt[i*prime[j]]=cnt[i]+<span class="hljs-number">1</span>;
+               <span class="hljs-comment">// 只有当cnt是m的倍数的时候，prime[j]才有贡献</span>
+               <span class="hljs-keyword">if</span>(cnt[i*prime[j]]%m==<span class="hljs-number">0</span>){  
+                   f[i*prime[j]]=f[i]*prime[j];
+               }<span class="hljs-keyword">else</span>{
+                   f[i*prime[j]]=f[i];
+               }
+               <span class="hljs-keyword">break</span>;
+               
+           }
+        }
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">memset</span>(isprime,<span class="hljs-literal">true</span>,<span class="hljs-keyword">sizeof</span>(isprime));
+    <span class="hljs-built_in">memset</span>(cnt,<span class="hljs-number">1</span>,<span class="hljs-keyword">sizeof</span>(cnt));
+    <span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span>(f));
+    <span class="hljs-built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;L;
+    calPrime(); <span class="hljs-comment">//求素数</span>
+    F();
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = L+<span class="hljs-number">1</span>;i&lt;=L+n;++i){
+        ans+=i-f[i];
+    }
+    <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+}
+</div></code></pre>
+<h2 id="m%E9%A2%98-minecraft">M题 <a href="https://ac.nowcoder.com/acm/contest/17574/M">Minecraft</a></h2>
+<p>这题挺简单，毕竟人家说了时签到题，不过这个输入格式确实有点费脑。</p>
+<h2 id="%E5%88%86%E6%9E%90">分析</h2>
+<p>根据题目，差不多重点就是下面</p>
+<ul>
+<li>每次从房子的每根“柱子”最底下建起方块(因为不能流沙)。</li>
+<li>每次选定一个字母之后所以该字母的位置都要建方块！</li>
+<li>最后要以最大字典序输出！</li>
+</ul>
+<p>可以通过有向图和拓扑排序解决，先填充入度为0的字母，然后更新图，如果全部入度为0的都已经访问了还有入度不为0，就重建失败。<br>
+对于字典序问题，没有用优先队列，直接在while里面套一个for即可，并且要从字母Z遍历到A，特别注意的是，一旦找到一个字母后，要重新进行for循环，不然达不到字典序。就因为这个卡88.9%给我整吐了。</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;cstring&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MAX 27     </span>
+<span class="hljs-keyword">int</span> t;   <span class="hljs-comment">// 测试数</span>
+<span class="hljs-keyword">int</span> n,m,h;  <span class="hljs-comment">// 长宽高</span>
+<span class="hljs-keyword">int</span> let[<span class="hljs-number">35</span>][<span class="hljs-number">35</span>][<span class="hljs-number">35</span>];   <span class="hljs-comment">// 在房子某个坐标的字母,用int存</span>
+<span class="hljs-keyword">char</span> c;
+<span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">NODE</span>{</span>
+    <span class="hljs-keyword">int</span> in=<span class="hljs-number">0</span>;   <span class="hljs-comment">// 入度</span>
+    <span class="hljs-keyword">int</span> out=<span class="hljs-number">0</span>;  <span class="hljs-comment">// 出度</span>
+    <span class="hljs-keyword">int</span> next[<span class="hljs-number">30000</span>];  <span class="hljs-comment">// 连接的下一个点，注意点的个数</span>
+    <span class="hljs-keyword">bool</span> isused=<span class="hljs-literal">false</span>;  <span class="hljs-comment">// 记录是否已经访问过 </span>
+    <span class="hljs-keyword">bool</span> isExit=<span class="hljs-literal">false</span>;
+}NODE;
+<span class="hljs-keyword">char</span> ans[MAX]; <span class="hljs-comment">// 存放答案的字母</span>
+<span class="hljs-keyword">int</span>  cnt=<span class="hljs-number">0</span>;   <span class="hljs-comment">// 答案中共有多少个字母</span>
+NODE Node[MAX];    <span class="hljs-comment">// 设置结点</span>
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">//freopen("test/USSTM.txt","r",stdin);</span>
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--){
+        <span class="hljs-comment">// 每次开始的时候记得还原</span>
+
+        cnt=<span class="hljs-number">0</span>;
+        c=<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;MAX;++i){
+            Node[i].in=<span class="hljs-number">0</span>;
+            Node[i].isExit=<span class="hljs-literal">false</span>;
+            Node[i].isused=<span class="hljs-literal">false</span>;
+            Node[i].out=<span class="hljs-number">0</span>;
+        }
+        <span class="hljs-built_in">cin</span>&gt;&gt;n&gt;&gt;m&gt;&gt;h;
+        <span class="hljs-keyword">if</span>(n==<span class="hljs-number">0</span>||m==<span class="hljs-number">0</span>||h==<span class="hljs-number">0</span>){
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"-1"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+            <span class="hljs-keyword">continue</span>;
+        }
+
+       <span class="hljs-comment">// 输入考了一波理解</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = h<span class="hljs-number">-1</span>;k&gt;=<span class="hljs-number">0</span>;--k){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n;++i){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;m;++j){
+                
+                <span class="hljs-built_in">cin</span>&gt;&gt;c;
+               let[i][j][k]=(<span class="hljs-keyword">int</span>)c-<span class="hljs-string">'A'</span>;
+               Node[let[i][j][k]].isExit=<span class="hljs-literal">true</span>;
+               
+            }
+         }
+         
+        }
+
+
+        <span class="hljs-comment">// 开始构造图</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = <span class="hljs-number">1</span>;k&lt;h;++k){
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n;++i){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;m;++j){
+                <span class="hljs-comment">// 如果和下面的不相等，则要生成边</span>
+                <span class="hljs-keyword">if</span>(let[i][j][k]!=let[i][j][k<span class="hljs-number">-1</span>]){
+                    <span class="hljs-keyword">int</span> tempU=let[i][j][k];
+                    <span class="hljs-keyword">int</span> tempL=let[i][j][k<span class="hljs-number">-1</span>];
+                    Node[tempU].in++;
+                    Node[tempL].next[Node[tempL].out++]=tempU;
+                }
+            }
+        }
+    }
+
+        <span class="hljs-keyword">bool</span> canUsed=<span class="hljs-literal">true</span>;    <span class="hljs-comment">// 记录能否找到入度为0且没有访问过的结点</span>
+
+        <span class="hljs-keyword">while</span>(canUsed){
+        canUsed=<span class="hljs-literal">false</span>;
+        <span class="hljs-comment">// 从字母大的找起,这里就不用优先队列了</span>
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">25</span>;i&gt;=<span class="hljs-number">0</span>;--i){
+           <span class="hljs-comment">// 本来有这个点才去判断</span>
+           <span class="hljs-keyword">if</span>(Node[i].isExit){
+                <span class="hljs-comment">// 入度为0且没有访问过</span>
+                <span class="hljs-keyword">if</span>(Node[i].in==<span class="hljs-number">0</span>&amp;&amp;!Node[i].isused){
+                    canUsed=<span class="hljs-literal">true</span>;
+                    ans[cnt++]=<span class="hljs-keyword">char</span>(i+<span class="hljs-string">'A'</span>);
+                    <span class="hljs-comment">// 更新结点状态,并更新其连接的边的状态</span>
+                     Node[i].isused=<span class="hljs-literal">true</span>; 
+                    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>;j&lt;Node[i].out;++j){
+                         Node[Node[i].next[j]].in--;
+                    }
+
+                    <span class="hljs-comment">// 找到一个之后，一定要重新再来，不然达不到字典序</span>
+                    <span class="hljs-keyword">break</span>;
+                }
+           }
+        }
+
+    }
+
+        <span class="hljs-comment">// 判断是否还有没有访问过的本来存在的点</span>
+        <span class="hljs-keyword">bool</span> flag=<span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">25</span>;i&gt;=<span class="hljs-number">0</span>;--i){
+           <span class="hljs-comment">// 本来有这个点才去判断</span>
+           <span class="hljs-keyword">if</span>(Node[i].isExit){
+                <span class="hljs-keyword">if</span>(!Node[i].isused){
+                    flag =<span class="hljs-literal">true</span>;
+                    <span class="hljs-keyword">break</span>;
+                }
+           }
+        }
+        
+        <span class="hljs-keyword">if</span>(flag){
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-string">"-1"</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+        }<span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;cnt;++i){
+                <span class="hljs-built_in">cout</span>&lt;&lt;ans[i];
+            }
+            <span class="hljs-built_in">cout</span>&lt;&lt;<span class="hljs-built_in">endl</span>;
+        }
+   
+    }
+
+}
+</div></code></pre>
+
+</body>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });</script>
+</html>
