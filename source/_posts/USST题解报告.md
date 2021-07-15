@@ -78,8 +78,8 @@ $$\sum\limits_{i=L+1}^{L+n}-f(i,m)$$
 根据以下算法枚举&nbsp;i&nbsp;进行计算
 * 当i是质数的时候，当m=1时，f[i]=i,否则f[i]=1。（注意：1不是质因数）  
 * 枚举质数prime[j]利用i对i*prime[j]进行推算。
-   * 当prime[j]不能整除i时，则prime[j]是i*prime[j]的最小质因子，且只有一个，cnt[i * prime[j]]&nbsp;=&nbsp;1。当m&nbsp;=&nbsp;1时，f[i * prime[j]]&nbsp;=&nbsp;i *prime[j],否则f[i * prime[j]]&nbsp;=&nbsp;i。(因为此时$\lfloor  \frac{a1}{m}  \rfloor$为0)
-   * 当prime[j]能整除i时，则prime[j]也是i的最小质因子，此时cnt[i * prime[j]]&nbsp;=&nbsp;cnt[i]&nbsp;+&nbsp;1。当cnt[i * prime[j]]%m&nbsp;=0&nbsp;时，f[i * prime[j]]&nbsp;=&nbsp;i *prime[j],否则f[i * prime[j]]&nbsp;=&nbsp;i。（此时应该枚举新的i，就如线性筛那样。）  
+   * 当prime[j]不能整除i时，则prime[j]是$i\ast prime[j]$的最小质因子，且只有一个，$cnt[i\ast prime[j]]=1$。当m&nbsp;=&nbsp;1时，$f[i\ast prime[j]]=i\ast prime[j]$,否则$f[i\ast prime[j]]=i$。(因为此时$\lfloor  \frac{a1}{m}  \rfloor$为0)
+   * 当prime[j]能整除i时，则prime[j]也是i的最小质因子，此时$cnt[i\ast prime[j]]=cnt[i]+1$。当$cnt[i \ast prime[j]]\%m=0$ 时，$f[i\ast prime[j]]=i\ast prime[j]$,否则$f[i\ast prime[j]]=i$。（此时应该枚举新的i，就如线性筛那样。）  
 
 ```c++
 #include <iostream>
