@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/1.png">
 <meta property="og:image" content="https://coding-bug.github.io/2021/07/15/%E7%89%9B%E5%AE%A2%E6%AC%A2%E4%B9%90%E8%B5%9B8E/2.png">
 <meta property="article:published_time" content="2021-07-14T23:57:06.000Z">
-<meta property="article:modified_time" content="2021-07-15T15:30:39.891Z">
+<meta property="article:modified_time" content="2021-07-15T16:38:58.271Z">
 <meta property="article:author" content="CJF">
 <meta property="article:tag" content="数论">
 <meta property="article:tag" content="组合数">
@@ -207,10 +207,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-15 07:57:06 / 修改时间：23:30:39" itemprop="dateCreated datePublished" datetime="2021-07-15T07:57:06+08:00">2021-07-15</time>
+              <time title="创建时间：2021-07-15 07:57:06" itemprop="dateCreated datePublished" datetime="2021-07-15T07:57:06+08:00">2021-07-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-16 00:38:58" itemprop="dateModified" datetime="2021-07-16T00:38:58+08:00">2021-07-16</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -267,7 +273,7 @@ a*x\equiv 1\pmod p</script><p>那么这个整数x即为a的乘法逆元，同时
 <p><b>充要条件</b>：a存在模p的乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，即a与p互质。  </p>
 <p><b>应用</b>：求$\frac{a}{b}\%p$等同于求a * (b的逆元)%p   </p>
 <ul>
-<li><b>证明</b>：<br>我们假设 <script type="math/tex">\frac{a}{b}\%p=m(a和b满足a\%b=0)\tag{1}</script><br>由乘法逆元符合分配律对(1)式两边乘以b有<script type="math/tex">a\%p=(m(b\%p))\%p\tag{2}</script><br>即<script type="math/tex">a\equiv m*b\pmod p\tag{3}</script><br>假设b的逆元是x，则(3)式两边乘以一个x有<script type="math/tex; mode=display">a*x\equiv m*b*x\pmod p\tag{4}</script>由逆元的定理有$b<em>x\equiv 1\pmod p$则<br>$$a</em>x\equiv m\pmod p\tag{5}$$证毕</li>
+<li><b>证明</b>：<br>我们假设 <script type="math/tex; mode=display">\frac{a}{b}\%p=m(a和b满足a\%b=0)\tag{1}</script>由乘法逆元符合分配律对(1)式两边乘以b有<script type="math/tex; mode=display">a\%p=(m(b\%p))\%p\tag{2}</script>即<script type="math/tex; mode=display">a\equiv m*b\pmod p\tag{3}</script>假设b的逆元是x，则(3)式两边乘以一个x有<script type="math/tex; mode=display">a*x\equiv m*b*x\pmod p\tag{4}</script>由逆元的定理有<br>$b\ast x\equiv 1\pmod p$<br>则<script type="math/tex; mode=display">a\ast x\equiv m\pmod p\tag{5}</script>证毕</li>
 </ul>
 <p>于是我们就可以把除法的求模运算转换为乘法的求模运算，从而可以利用分配律。</p>
 <p><b>类比</b>：其实逆元可以类比于普通乘法中的倒数，即当$b*x=1$时$\frac{1}{b}=x$，但是在求模运算中，x与$\frac{1}{b}$只是等同，而并非就是取倒数。</p>
@@ -277,13 +283,15 @@ a*x\equiv 1\pmod p</script><p>那么这个整数x即为a的乘法逆元，同时
 <li>如果a是p的倍数，$a^p\equiv a \pmod p$ </li>
 <li>如果a不是p的倍数，$a^{p-1}\equiv 1 \pmod p$  </li>
 </ol>
-<p>由乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，所以a不会是p的倍数，所以用第二条。将第二条转化以下有<script type="math/tex">a*a^{p-2}\equiv 1\pmod p</script><br>则$a^{p-2}$就是a的逆元，证明自己去百度。</p>
+<p>由乘法逆元的充要条件是gcd(a,p)&nbsp;=1&nbsp;，所以a不会是p的倍数，所以用第二条。将第二条转化以下有</p>
+<script type="math/tex; mode=display">
+a*a^{p-2}\equiv 1\pmod p</script><p>则$a^{p-2}$就是a的逆元，证明自己去百度。</p>
 <p>最后利用快速幂求解即可。</p>
 <h4 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h4><p>快速幂即求解幂的快速算法。考察$3^{10}$,有</p>
 <script type="math/tex; mode=display">3^{10}=9^{5}=9*81^{2}=9*6561^{1}=(9*6561)*1^{0}</script><p>设幂为p，底数为b，则其算法思路为</p>
 <ol>
-<li>如果p是偶数，b=b*b；p&gt;&gt;1</li>
-<li>如果p是奇数，那么ans=ans <em> b；b=b </em> b</li>
+<li>如果p是偶数，$b=b\ast b$；p&gt;&gt;1</li>
+<li>如果p是奇数，那么$ans=ans\ast b$；$b=b\ast b$</li>
 </ol>
 <p>这样最后得到的结果即在ans中</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> mod =<span class="number">20100403</span>;</span><br><span class="line"><span class="keyword">int</span> n , m;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 求阶乘</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fac</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> a)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">long</span> <span class="keyword">long</span> i = a;i&gt;=<span class="number">1</span>;--i)&#123;</span><br><span class="line">       ans=(ans*i%mod)%mod;</span><br><span class="line">       ans=ans%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 矩阵快速幂求逆元</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">Fpow</span><span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> b,<span class="keyword">long</span> <span class="keyword">long</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(p&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p%<span class="number">2</span>==<span class="number">0</span>)&#123;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">           ans=(ans*b)%mod;</span><br><span class="line">           b=(b*b)%mod;</span><br><span class="line">           p=p/<span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 求组合数</span></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> a1=<span class="built_in">fac</span>(a);  <span class="comment">// 求分子</span></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> b1=(<span class="built_in">fac</span>(b)*<span class="built_in">fac</span>(a-b))%mod; <span class="comment">//分母</span></span><br><span class="line">    <span class="comment">//求b的逆元</span></span><br><span class="line">    b1=<span class="built_in">Fpow</span>(b1,mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">return</span> ((a1%mod)*(b1%mod))%mod;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">freopen</span>(<span class="string">&quot;test/E.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> ans;</span><br><span class="line">    ans=(<span class="built_in">C</span>(n+m,n)-<span class="built_in">C</span>(n+m,n+<span class="number">1</span>)+mod)%mod; <span class="comment">// 可能会求得附属，所以先加上模再取模，因为计算结果是分别取模之后的，所以小的可能本来就比mod小</span></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -513,7 +521,7 @@ a*x\equiv 1\pmod p</script><p>那么这个整数x即为a的乘法逆元，同时
     };
     (function () {
       var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
       script.defer = true;
       document.head.appendChild(script);
     })();
