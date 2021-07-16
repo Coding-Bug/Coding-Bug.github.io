@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EducationalCodeforcesRound111.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///f%3A//MyCourse//MyBlog//themes//typora-theme-next//next.css" type="text/css">
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="educational-codeforces-round-111">Educational Codeforces Round 111</h1>
+<h2 id="c%E9%A2%98-manhattan-subarrays">C题 <a href="https://codeforces.com/contest/1550/problem/C">Manhattan Subarrays</a></h2>
+<h3 id="%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F">题目大意</h3>
+<p>题目大概意思是，定义两个点$a(x_1,y_1)$,$b(x_2,y_2)$的距离$d=|x_1-x_2|+|y_1-y_2|$  。对于三个点p，q，r如果$d(p,r)=d(p,q)+d(q,r)$,则认为这三个点是一个“坏三连”。问给定一个数组$a_1,a_2...a_n$每个元素$a_i$与i构成一个点$(a_i,i)$，问有多少个任意三个点都不能构成“坏三连”的连续子串(如果连续子串只有一个或者两个元素，则也为不能构成“坏三连”的子串)</p>
+<h4 id="%E5%88%86%E6%9E%90">分析</h4>
+<p>分析题目可以发现，连续子串每个元素$a_i$对应的点横坐标不确定，但是纵坐标是严格递增的。</p>
+<ul>
+<li>考察可以构成“坏三连”的三个点，由题意可知纵坐标为中间那个点一定在另外两个点中间(包含边边)，如图。、
+<img src="http://qwc0s7gbm.hn-bkt.clouddn.com/CF111_0.png" alt="avata"></li>
+<li>先考察高度连续两个点$p(a_i,i)$,$q(a_{i+1},i+1)$
+1.如果$a_{i+1}&gt;a_i$，则后面的点都不能在q右边。图片红色的区域不可再落点第三个点。
+<img src="http://qwc0s7gbm.hn-bkt.clouddn.com/CF111_1.png" alt="avata">
+2.$a_{i+1}&lt;a_i$，也类似。
+3.如果$a_{i+1}=a_i$，则无论下一个点放在哪里，都是“坏三连”，不能放第三个点。</li>
+<li>考察三个点$p(a_i,i)$,$q(a_{i+1},i+1)$,$r(a_{i+2},i+2)$，只分析$a_{i+1}&gt;a_i$，并且第三个点以落的情况，$a_{i+1}&lt;a_i$情况类似。
+1.如果$a_{i+2}&lt;a_i$，则r的左上角也不能再放置点
+<img src="http://qwc0s7gbm.hn-bkt.clouddn.com/CF111_2.png" alt="avata">
+2.如果$a_i&lt;a_{i+2}&lt;a_i+1$,则受到p和q的同时影响，r左上角和右上角都无法再放置点，则不可再放置下一个点
+3.如果$a_{i+2}=a_i$，则不能无法再放置下一个点，r一定会在下一个点到p之间。</li>
+<li>考察能放下四个点，则不可能再放下第五个点，则最多四个点。只有在放三个点的第一条基础上，才能放置四个点。
+<img src="http://qwc0s7gbm.hn-bkt.clouddn.com/CF111_3.png" alt="avata">
+下面暴力模拟一遍过的，但是有点笨。其实有更好的方法</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+<span class="hljs-keyword">int</span> t; <span class="hljs-comment">// 测试用例数</span>
+<span class="hljs-keyword">int</span> n; <span class="hljs-comment">// 数组长度</span>
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> a[<span class="hljs-number">200002</span>];
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> ans;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-comment">//freopen("test/C.txt","r",stdin);</span>
+    <span class="hljs-built_in">cin</span>&gt;&gt;t;
+    <span class="hljs-keyword">while</span>(t--){
+       ans=<span class="hljs-number">0</span>;
+       <span class="hljs-built_in">cin</span>&gt;&gt;n;
+       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n;++i){
+           <span class="hljs-built_in">cin</span>&gt;&gt;a[i];
+       }
+       <span class="hljs-keyword">int</span> right;   <span class="hljs-comment">// 坐标右下线</span>
+       <span class="hljs-keyword">int</span> left;    <span class="hljs-comment">// 坐标左上限</span>
+       <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;n<span class="hljs-number">-2</span>;++i){
+           right=<span class="hljs-number">0</span>;
+           left=<span class="hljs-number">0</span>;
+           <span class="hljs-comment">// 先判断第二个点</span>
+           <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">1</span>]&gt;a[i]){
+               right=a[i+<span class="hljs-number">1</span>];
+           }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">1</span>]&lt;a[i]){
+               left=a[i+<span class="hljs-number">1</span>];
+           }<span class="hljs-keyword">else</span>{
+               <span class="hljs-keyword">continue</span>;
+           }
+           
+           <span class="hljs-comment">// 判断第三个点</span>
+           <span class="hljs-keyword">if</span>(right!=<span class="hljs-number">0</span>){   <span class="hljs-comment">// 如果第一个点偏右</span>
+              <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">2</span>]&gt;=right){
+                  <span class="hljs-keyword">continue</span>;
+              }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">2</span>]&lt;a[i]){
+                  left=a[i+<span class="hljs-number">2</span>];
+                  ans++;
+              }<span class="hljs-keyword">else</span>{
+                    ans++;
+                  <span class="hljs-keyword">continue</span>;
+              }
+           }<span class="hljs-keyword">else</span>{
+               <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">2</span>]&lt;=left){
+                  <span class="hljs-keyword">continue</span>;
+              }<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[i+<span class="hljs-number">2</span>]&gt;a[i]){
+                  right=a[i+<span class="hljs-number">2</span>];
+                  ans++;
+              }<span class="hljs-keyword">else</span>{
+                    ans++;
+                  <span class="hljs-keyword">continue</span>;
+              }
+           }
+
+           <span class="hljs-comment">// 判断第四个点</span>
+           <span class="hljs-keyword">if</span>(i!=n<span class="hljs-number">-3</span>&amp;&amp;a[i+<span class="hljs-number">3</span>]&lt;right&amp;&amp;a[i+<span class="hljs-number">3</span>]&gt;left){
+               ans++;
+           }
+       }
+
+       ans+=n;   <span class="hljs-comment">// 单独也是答案</span>
+       ans+=n<span class="hljs-number">-1</span>; <span class="hljs-comment">// 每两个也是答案</span>
+       <span class="hljs-built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="hljs-built_in">endl</span>;
+       
+    }
+}
+</div></code></pre>
+
+</body>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config"> MathJax.Hub.Config({ tex2jax: {inlineMath: [['$', '$']]}, messageStyle: "none" });</script>
+</html>
