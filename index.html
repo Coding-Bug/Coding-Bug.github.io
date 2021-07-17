@@ -225,15 +225,15 @@
 <h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>分析题目可以发现，连续子串每个元素$a_i$对应的点横坐标不确定，但是纵坐标是严格递增的。</p>
 <ul>
 <li>考察可以构成“坏三连”的三个点，由题意可知纵坐标为中间那个点一定在另外两个点中间(包含边边)，如图。、<br> <a target="_blank" rel="noopener" href="https://imgtu.com/i/WQRUU0"><img src="https://z3.ax1x.com/2021/07/17/WQRUU0.png" alt="WQRUU0.png"></a></li>
-<li>先考察高度连续两个点$p(a<em>i,i)$,$q(a</em>{i+1},i+1)$<ol>
+<li>先考察高度连续两个点$p(a_i,i)$,$q(a_{i+1},i+1)$<ol>
 <li>如果$a_{i+1}&gt;a_i$，则后面的点都不能在q右边。图片红色的区域不可再落点第三个点。<br><a target="_blank" rel="noopener" href="https://imgtu.com/i/WQRNEq"><img src="https://z3.ax1x.com/2021/07/17/WQRNEq.png" alt="WQRNEq.png"></a></li>
 <li>$a_{i+1}&lt;a_i$，也类似。</li>
 <li>如果$a_{i+1}=a_i$，则无论下一个点放在哪里，都是“坏三连”，不能放第三个点。</li>
 </ol>
 </li>
-<li>考察三个点$p(a<em>i,i)$,$q(a</em>{i+1},i+1)$,$r(a<em>{i+2},i+2)$，只分析$a</em>{i+1}&gt;a<em>i$，并且第三个点以落的情况，$a</em>{i+1}&lt;a_i$情况类似。<ol>
+<li>考察三个点$p(a_i,i)$,$q(a_{i+1},i+1)$,$r(a_{i+2},i+2)$，只分析$a_{i+1}&gt;a_i$，并且第三个点以落的情况，$a_{i+1}&lt;a_i$情况类似。<ol>
 <li>如果$a_{i+2}&lt;a_i$，则r的左上角也不能再放置点<br><img src="https://s3.jpg.cm/2021/07/17/Ieqjaf.png" alt="Ieqjaf.png"></li>
-<li>如果$a<em>i&lt;a</em>{i+2}&lt;a_i+1$,则受到p和q的同时影响，r左上角和右上角都无法再放置点，则不可再放置下一个点</li>
+<li>如果$a_i&lt;a_{i+2}&lt;a_i+1$,则受到p和q的同时影响，r左上角和右上角都无法再放置点，则不可再放置下一个点</li>
 <li>如果$a_{i+2}=a_i$，则不能无法再放置下一个点，r一定会在下一个点到p之间。</li>
 </ol>
 </li>
