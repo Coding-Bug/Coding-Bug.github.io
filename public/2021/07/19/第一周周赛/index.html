@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"coding-bug.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="第一周周赛报告G2022年WUT集训计划大意与分析题目就是求所有acmer可以到达的房间有多少个。刚开始用floyd，然后成功套老鹅。然后用搜索，搜索每个房间知否都对所有的成员可达。进行队员与房间的一对一搜索，造成了时间浪费。实际上解法是每个队员把房间走一遍，然后记录每个房间被走的次数$sum[i]$，如果sum[i]为队员的总数，则这个房间可用。这样保证了每个房间只会被每个队员走一次。复杂度O(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一周周赛">
+<meta property="og:url" content="https://coding-bug.github.io/2021/07/19/%E7%AC%AC%E4%B8%80%E5%91%A8%E5%91%A8%E8%B5%9B/index.html">
+<meta property="og:site_name" content="CJF的博客">
+<meta property="og:description" content="第一周周赛报告G2022年WUT集训计划大意与分析题目就是求所有acmer可以到达的房间有多少个。刚开始用floyd，然后成功套老鹅。然后用搜索，搜索每个房间知否都对所有的成员可达。进行队员与房间的一对一搜索，造成了时间浪费。实际上解法是每个队员把房间走一遍，然后记录每个房间被走的次数$sum[i]$，如果sum[i]为队员的总数，则这个房间可用。这样保证了每个房间只会被每个队员走一次。复杂度O(">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-19T08:40:02.000Z">
+<meta property="article:modified_time" content="2021-07-21T08:25:39.327Z">
+<meta property="article:author" content="CJF">
+<meta property="article:tag" content="CJF">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://coding-bug.github.io/2021/07/19/%E7%AC%AC%E4%B8%80%E5%91%A8%E5%91%A8%E8%B5%9B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第一周周赛 | CJF的博客</title>
+  
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?<11ff1a384565ec96003abf443c3b41f8>";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">CJF的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://coding-bug.github.io/2021/07/19/%E7%AC%AC%E4%B8%80%E5%91%A8%E5%91%A8%E8%B5%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CJF">
+      <meta itemprop="description" content="我系菜狗">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CJF的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第一周周赛
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-19 16:40:02" itemprop="dateCreated datePublished" datetime="2021-07-19T16:40:02+08:00">2021-07-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-21 16:25:39" itemprop="dateModified" datetime="2021-07-21T16:25:39+08:00">2021-07-21</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="第一周周赛报告"><a href="#第一周周赛报告" class="headerlink" title="第一周周赛报告"></a>第一周周赛报告</h1><h2 id="G2022年WUT集训计划"><a href="#G2022年WUT集训计划" class="headerlink" title="G2022年WUT集训计划"></a>G<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/contest/47145#problems">2022年WUT集训计划</a></h2><h4 id="大意与分析"><a href="#大意与分析" class="headerlink" title="大意与分析"></a>大意与分析</h4><p>题目就是求所有acmer可以到达的房间有多少个。刚开始用floyd，然后成功套老鹅。<br>然后用搜索，搜索每个房间知否都对所有的成员可达。进行队员与房间的一对一搜索，造成了时间浪费。<br>实际上解法是每个队员把房间走一遍，然后记录每个房间被走的次数$sum[i]$，如果sum[i]为队员的总数，则这个房间可用。这样保证了每个房间只会被每个队员走一次。复杂度O(KN)。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TLE ios::sync_with_stdio(0),cin.tie(0)</span></span><br><span class="line"><span class="keyword">int</span> K,N,M;</span><br><span class="line"><span class="keyword">int</span> acm[<span class="number">105</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">1007</span>][<span class="number">1007</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">bool</span> visit[<span class="number">1007</span>];</span><br><span class="line"><span class="keyword">int</span> sum[<span class="number">1007</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="comment">// r存放前一个</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=N;++j)&#123;</span><br><span class="line">       <span class="keyword">if</span>(!visit[j]&amp;&amp;a[i][j]==<span class="number">1</span>)&#123;</span><br><span class="line">           visit[j]=<span class="literal">true</span>;</span><br><span class="line">           sum[j]++;</span><br><span class="line">           <span class="built_in">dfs</span>(j);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123; </span><br><span class="line">    TLE;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/G.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;K&gt;&gt;N&gt;&gt;M;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">1</span>;i&lt;=K;++i)&#123;</span><br><span class="line">          cin&gt;&gt;acm[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=N;++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=N;++j)&#123;</span><br><span class="line">           a[i][j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        a[i][i]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=M;++i)&#123;</span><br><span class="line">        cin&gt;&gt;x&gt;&gt;y;</span><br><span class="line">        a[x][y]=<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=K;++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j&lt;=N;++j)&#123;</span><br><span class="line">            visit[j]=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sum[acm[i]]++;</span><br><span class="line">        visit[acm[i]]=<span class="literal">true</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(acm[i]); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i&lt;=N;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sum[i]==K)&#123;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="B学园偶像祭"><a href="#B学园偶像祭" class="headerlink" title="B学园偶像祭"></a>B<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/T186964?contestId=47145">学园偶像祭</a></h2><h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>题目好长，没想到用二分写，看到标签为二分的时候就跑去用2分补提。<br>刚开始WA是没考虑到如果l=r-1且答案偏小的话，就会死循环，因为l=ans=l。<br>考虑到这点之后还是WA WA WA，看了题解发现是要开unsign long long ,这也是做了那么久题第一次碰到这么大的数据，以后注意。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> n,S,L;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> A[<span class="number">200005</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> u[<span class="number">200005</span>];</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> r=<span class="number">1e18</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//freopen(&quot;test/A.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;S&gt;&gt;L;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;A[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;n;++j)&#123;</span><br><span class="line">        cin&gt;&gt;u[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(r!=l)&#123;</span><br><span class="line">        ans=(r+l)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">           <span class="keyword">if</span>(A[i]+u[i]*ans&gt;=L)&#123;</span><br><span class="line">               sum+=A[i]+u[i]*ans;</span><br><span class="line">           &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum&gt;S)&#123;</span><br><span class="line">            r=ans;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sum&lt;S)&#123;</span><br><span class="line">            <span class="keyword">if</span>(r-l==<span class="number">1</span>)&#123;</span><br><span class="line">                ans=r;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            l=ans;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Biyua买装备"><a href="#Biyua买装备" class="headerlink" title="Biyua买装备"></a>B<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/T186977">iyua买装备</a></h2><h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>题目要求在最小力量初值的前提下的最小精神初值，则可以先求最小力量初值。</p>
+<ul>
+<li>求最小能量初值：使用优先队列小顶堆Q1存储每个结点，结点的需求力量低的优先级高。每次将当前拥有能量值sum1和堆顶装备所需能量值a[i]比较，如果够，则穿上这个装备，如果不够，则初始能量要加上差值a[i]-sum1，一直到清空队列即可。</li>
+<li>求最小精神：建立另外一个小顶堆Q2，所需精神值小的优先级高。<ol>
+<li>设目前有的力量为beg，则我们可以从Q1中选出当前拥有能量值的情况下所能装上的所有装备，放到Q2中。</li>
+<li>如果当前精神值sum2比Q2中的堆顶所需要的精神值b[i]大，则穿上这个装备，更新当前力量值beg，回到1继续看看能不能有更多的装备可选择。</li>
+<li>如果当前精神值sum2比Q2中的堆顶所需要的精神值小，则必须让初始精神值加上b[i]-sum2。</li>
+<li>重复上述步骤直到清空两个队列</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span>  T;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">ELE</span>&#123;</span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> a;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> b;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> c;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> d;</span><br><span class="line">&#125;Ele;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重写力量小根堆</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cmp1</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span> <span class="params">()</span> <span class="params">(Ele a,Ele b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(a.a==b.a)&#123;</span><br><span class="line">            <span class="keyword">return</span> a.b&gt;b.b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> a.a&gt;b.a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;cmp1;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 重写智慧小根堆</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">cmp2</span>&#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(Ele a,Ele b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.b&gt;b.b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;cmp2;</span><br><span class="line">Ele ele[<span class="number">100004</span>];</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans1=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> sum1=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans2=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> sum2=<span class="number">0</span>;   <span class="comment">// 记录当前精神的和</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/A.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    priority_queue&lt;Ele,vector&lt;Ele&gt;,cmp1&gt; Q1 ;  <span class="comment">// 力量从小到大的小根堆</span></span><br><span class="line">    priority_queue&lt;Ele,vector&lt;Ele&gt;,cmp2&gt; Q2;  <span class="comment">// 精神从小到大的小根堆</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        cin&gt;&gt;ele[i].a&gt;&gt;ele[i].b&gt;&gt;ele[i].c&gt;&gt;ele[i].d;</span><br><span class="line">        Q1.<span class="built_in">push</span>(ele[i]); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// for(int i = 0;i&lt;n;++i)&#123;</span></span><br><span class="line">    <span class="comment">//     cout&lt;&lt;Q1.top().a&lt;&lt;&quot; &quot;&lt;&lt;Q1.top().b&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">//     Q1.pop();</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// cout&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">// for(int i = 0;i&lt;n;++i)&#123;</span></span><br><span class="line">    <span class="comment">//     cout&lt;&lt;Q2.top().a&lt;&lt;&quot; &quot;&lt;&lt;Q2.top().b&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">//     Q2.pop();</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line">    <span class="comment">// cout&lt;&lt;endl;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 求出最小的力量值</span></span><br><span class="line">    <span class="keyword">while</span>(!Q1.<span class="built_in">empty</span>())&#123;</span><br><span class="line">       Ele p=Q1.<span class="built_in">top</span>();</span><br><span class="line">       Q1.<span class="built_in">pop</span>();</span><br><span class="line">       <span class="keyword">if</span>(sum1&gt;=p.a)&#123;<span class="comment">// 当前的力量够穿</span></span><br><span class="line">          sum1+=p.c;</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">       &#125;<span class="keyword">else</span>&#123;   <span class="comment">// 不够穿的时候要更新初始值</span></span><br><span class="line">          ans1+=p.a-sum1;</span><br><span class="line">          sum1=p.a+p.c;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Q1还要用</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;n;++i)&#123;</span><br><span class="line">        Q1.<span class="built_in">push</span>(ele[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> beg=ans1;  <span class="comment">// 记录最小初始力量</span></span><br><span class="line">    <span class="comment">// 在力量最小值开始满足的情况下，争取精神最小</span></span><br><span class="line">    <span class="keyword">while</span>(!Q1.<span class="built_in">empty</span>()||!Q2.<span class="built_in">empty</span>())&#123;   <span class="comment">// 全部选完之后两个队列都为空</span></span><br><span class="line">         Ele p;</span><br><span class="line">        <span class="comment">// 选出当前力量值下Q1中所有可取装备 </span></span><br><span class="line">        <span class="keyword">while</span>(!Q1.<span class="built_in">empty</span>())&#123; </span><br><span class="line">            <span class="keyword">if</span>(beg&lt;Q1.<span class="built_in">top</span>().a)&#123;  </span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 可以穿的放到Q2,但是这里害不能穿</span></span><br><span class="line">            p=Q1.<span class="built_in">top</span>();</span><br><span class="line">            Q2.<span class="built_in">push</span>(p);</span><br><span class="line">            Q1.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 尝试穿一件</span></span><br><span class="line">        <span class="keyword">if</span>(!Q2.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        p=Q2.<span class="built_in">top</span>();</span><br><span class="line">        Q2.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">if</span>(sum2&gt;=p.b)&#123; <span class="comment">// 当前精神值够穿</span></span><br><span class="line">            sum2+=p.d;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            ans2+=p.b-sum2;</span><br><span class="line">            sum2+=p.b-sum2+p.d;</span><br><span class="line">        &#125;</span><br><span class="line">        beg+=p.c;  <span class="comment">// 选了之后要加上力量</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans2&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="D小L的测量学外业"><a href="#D小L的测量学外业" class="headerlink" title="D小L的测量学外业"></a>D<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/T186968?contestId=47145">小L的测量学外业</a></h2><p>补的时候看到最短路标签就直接广搜，但是这个题要的不是步数最短，而实拐角最短，所以是先使劲往一个方向搜到墙，再往其方向搜。已经入过队的点不用再入队，但是应该能被经过多次。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> x,y;     <span class="comment">// 当前结点的位置</span></span><br><span class="line">    <span class="keyword">int</span> step=<span class="number">0</span>;  <span class="comment">// 当前的转角数</span></span><br><span class="line">&#125;Node;</span><br><span class="line"><span class="keyword">bool</span> visit[<span class="number">103</span>][<span class="number">103</span>];  <span class="comment">// 某个点是否已经访问过，即已经入队</span></span><br><span class="line"><span class="keyword">int</span> Move[<span class="number">4</span>][<span class="number">2</span>]=&#123;&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,&#123;<span class="number">0</span>,<span class="number">-1</span>&#125;,&#123;<span class="number">-1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">1</span>,<span class="number">0</span>&#125;&#125;;   <span class="comment">// 移动</span></span><br><span class="line"><span class="keyword">int</span> W;</span><br><span class="line"><span class="keyword">int</span> H;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">103</span>][<span class="number">103</span>];</span><br><span class="line"><span class="keyword">int</span> BX;</span><br><span class="line"><span class="keyword">int</span> BY; <span class="comment">// 开始结点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">     queue&lt;Node&gt; Q;</span><br><span class="line">     Node p;</span><br><span class="line">     p.x=BX;</span><br><span class="line">     p.y=BY;</span><br><span class="line">     Q.<span class="built_in">push</span>(p);</span><br><span class="line">     <span class="keyword">while</span>(!Q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">         p=Q.<span class="built_in">front</span>();</span><br><span class="line">         Q.<span class="built_in">pop</span>();</span><br><span class="line">         <span class="keyword">int</span> lx=p.x;</span><br><span class="line">         <span class="keyword">int</span> ly=p.y;</span><br><span class="line">         <span class="keyword">int</span> step=p.step;</span><br><span class="line">         <span class="keyword">for</span>(<span class="keyword">int</span> e=<span class="number">0</span>;e&lt;<span class="number">4</span>;++e)&#123;</span><br><span class="line">             <span class="keyword">int</span> nx=lx+Move[e][<span class="number">0</span>];</span><br><span class="line">             <span class="keyword">int</span> ny=ly+Move[e][<span class="number">1</span>];</span><br><span class="line">             <span class="comment">// 沿着一条线一直走，直到撞墙</span></span><br><span class="line">             <span class="keyword">while</span>(nx&lt;W&amp;&amp;nx&gt;=<span class="number">0</span>&amp;&amp;ny&lt;H&amp;&amp;ny&gt;=<span class="number">0</span>&amp;&amp;str[nx][ny]!=<span class="string">&#x27;*&#x27;</span>)&#123;</span><br><span class="line">                 <span class="keyword">if</span>(str[nx][ny]==<span class="string">&#x27;C&#x27;</span>)&#123;</span><br><span class="line">                     <span class="comment">//cout&lt;&lt;e&lt;&lt;&quot; &quot;&lt;&lt;nx&lt;&lt;&quot; &quot;&lt;&lt;ny&lt;&lt;endl;</span></span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="keyword">if</span>(str[nx][ny]==<span class="string">&#x27;C&#x27;</span>&amp;&amp;!(BX==nx&amp;&amp;BY==ny))&#123;  <span class="comment">// 找到了</span></span><br><span class="line">                     cout&lt;&lt;step&lt;&lt;endl;</span><br><span class="line">                     <span class="keyword">return</span> ; </span><br><span class="line">                 &#125;</span><br><span class="line">                 <span class="keyword">if</span>(!visit[nx][ny])&#123;  <span class="comment">// 没遍历过的结点入队                  </span></span><br><span class="line">                   p.x=nx;</span><br><span class="line">                   p.y=ny;</span><br><span class="line">                   p.step=step+<span class="number">1</span>;</span><br><span class="line">                   visit[nx][ny]=<span class="literal">true</span>;</span><br><span class="line">                   Q.<span class="built_in">push</span>(p);</span><br><span class="line">                 &#125;</span><br><span class="line">                 nx+=Move[e][<span class="number">0</span>];</span><br><span class="line">                 ny+=Move[e][<span class="number">1</span>];</span><br><span class="line">             &#125;</span><br><span class="line"></span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">     </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;test/D.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;H&gt;&gt;W;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;W;++i)&#123;</span><br><span class="line">        cin&gt;&gt;str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;W;++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;H;++j)&#123;</span><br><span class="line">            visit[i][j]=<span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 选出开始结点</span></span><br><span class="line">    <span class="keyword">bool</span> flag=<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;W;++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>;j&lt;H;++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[i][j]==<span class="string">&#x27;C&#x27;</span>)&#123;</span><br><span class="line">                visit[i][j]=<span class="literal">true</span>;</span><br><span class="line">                BX=i;</span><br><span class="line">                BY=j;</span><br><span class="line">                flag=<span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">bfs</span>();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/16/EducationalCodeforcesRound111/" rel="prev" title="EducationalCodeforcesRound111">
+      <i class="fa fa-chevron-left"></i> EducationalCodeforcesRound111
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/10/%E6%95%B0%E6%8D%AE%E7%A6%BB%E6%95%A3%E5%8C%96/" rel="next" title="数据离散化">
+      数据离散化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E5%91%A8%E5%91%A8%E8%B5%9B%E6%8A%A5%E5%91%8A"><span class="nav-number">1.</span> <span class="nav-text">第一周周赛报告</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#G2022%E5%B9%B4WUT%E9%9B%86%E8%AE%AD%E8%AE%A1%E5%88%92"><span class="nav-number">1.1.</span> <span class="nav-text">G2022年WUT集训计划</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%A7%E6%84%8F%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">大意与分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E5%AD%A6%E5%9B%AD%E5%81%B6%E5%83%8F%E7%A5%AD"><span class="nav-number">1.2.</span> <span class="nav-text">B学园偶像祭</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">1.2.1.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Biyua%E4%B9%B0%E8%A3%85%E5%A4%87"><span class="nav-number">1.3.</span> <span class="nav-text">Biyua买装备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%9E%90-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D%E5%B0%8FL%E7%9A%84%E6%B5%8B%E9%87%8F%E5%AD%A6%E5%A4%96%E4%B8%9A"><span class="nav-number">1.4.</span> <span class="nav-text">D小L的测量学外业</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="CJF"
+      src="/images/avatar.gif">
+  <p class="site-author-name" itemprop="name">CJF</p>
+  <div class="site-description" itemprop="description">我系菜狗</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
